@@ -1,0 +1,47 @@
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="shieldGrad" x1="50" y1="6" x2="50" y2="94" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#042f2c" />
+      <stop offset="100%" stop-color="#011413" />
+    </linearGradient>
+    <linearGradient id="cyanBorder" x1="21" y1="15" x2="79" y2="85" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#0891b2" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#06b6d4" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+  <!-- Outer Shield Shell -->
+  <path
+    d="M50 4L90 20C90 61 71 87 50 96C29 87 10 61 10 20L50 4Z"
+    fill="url(#shieldGrad)"
+    stroke="#0f766e"
+    stroke-width="3"
+    stroke-linejoin="round"
+  />
+  <!-- Inner White Shield Plaque with Cyan Accent Border -->
+  <path
+    d="M50 14L80 26C80 57 65 77 50 86C35 77 20 57 20 26L50 14Z"
+    fill="#ffffff"
+    stroke="url(#cyanBorder)"
+    stroke-width="4.5"
+    stroke-linejoin="round"
+    filter="url(#glow)"
+  />
+  <!-- BKR Lab Typography -->
+  <text
+    x="50"
+    y="56"
+    text-anchor="middle"
+    fill="#041f1e"
+    font-size="22"
+    font-weight="900"
+    font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+    letter-spacing="0.5"
+  >
+    BKR
+  </text>
+  <!-- Verified Cyan Dot -->
+  <circle cx="78" cy="18" r="4.5" fill="#22d3ee" stroke="#042f2c" stroke-width="1.5" />
+</svg>

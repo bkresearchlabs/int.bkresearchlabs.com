@@ -1,0 +1,2611 @@
+import { Product, ProductCategory, SiteSettings, HomepageContent, Order, DiscountCode, PaymentGateway, DownloadableItem, CommunicationSystemState, UserAssetGrant, AssetEmailLog, CustomPage, OtaSyncSettings, SeoGlobalConfig, SeoItemMeta, DEFAULT_AI_MASTER_CONTROL } from '../types';
+
+export const INITIAL_CATEGORIES: ProductCategory[] = [
+  {
+    id: 'cat-brain',
+    name: 'Brain',
+    slug: 'brain',
+    description: 'High-purity neuro-active benchmark compounds for central nervous system and cognitive biochemical research.',
+    image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80&w=800',
+    sort_order: 1,
+    active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'cat-cellular',
+    name: 'Cellular',
+    slug: 'cellular',
+    description: 'Mitochondrial, telomeric, and cell-longevity reference standards for cellular signaling pathways.',
+    image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=800',
+    sort_order: 2,
+    active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'cat-growth-hormone',
+    name: 'Growth Hormone',
+    slug: 'growth-hormone',
+    description: 'Secretagogue derivatives and somatotropic axis reference standards for endocrine research.',
+    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80&w=800',
+    sort_order: 3,
+    active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'cat-hormone',
+    name: 'Hormone',
+    slug: 'hormone',
+    description: 'Analytical hormone receptor agonists, ligand benchmarks, and endocrine pathway research compounds.',
+    image: 'https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&q=80&w=800',
+    sort_order: 4,
+    active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'cat-metabolic',
+    name: 'Metabolic',
+    slug: 'metabolic',
+    description: 'Incretin receptor co-agonists and metabolic regulation reference compounds for in vitro kinetic profiling.',
+    image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=800',
+    sort_order: 5,
+    active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'cat-skin-tissue',
+    name: 'Skin/Tissue',
+    slug: 'skin-tissue',
+    description: 'Extracellular matrix remodeling, copper-binding complexes, and tissue repair research compounds.',
+    image: 'https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=800',
+    sort_order: 6,
+    active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'cat-compounds-consumables',
+    name: 'Compounds & Consumables',
+    slug: 'compounds-consumables',
+    description: 'Bacteriostatic reconstitution water, sterile dilution buffers, and specialized laboratory supplies.',
+    image: 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&q=80&w=800',
+    sort_order: 7,
+    active: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  }
+];
+
+export const INITIAL_PRODUCTS: Product[] = [
+  {
+    id: 'prod-tesam10mg',
+    sku: 'tesam10mg',
+    name: 'TESAMORELIN 10mg Lyophilized Powder',
+    slug: 'tesamorelin-10mg-lyophilized-powder',
+    description: 'Tesamorelin is a synthetic growth hormone-releasing hormone (GHRH) analog (engineered to mimic a natural fragment) that stimulates the pituitary gland to release endogenous growth hormone in a pulsatile manner.  Clinically,  FDA-approved use in reducing excess visceral (abdominal) fat in patients with HIV-associated lipodystrophy.\n\nVisceral Fat Reduction: It has a strong clinical track record for targeting metabolically dangerous deep belly fat surrounding the internal organs, generally spares subcutaneous fat while preserving lean muscle mass.\n\n• FDA approved\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'Tesamorelin a synthetic growth hormone-releasing hormone (GHRH).  Stimulates the pituitary gland pulsatile release GHRH targeting metabolically dangerous deep belly fat surrounding internal organs, sparing subcutaneous fat, but preserving lean muscle mass.\n\nFDA-approved in reducing excess visceral (abdominal) fat in patients with HIV-associated lipodystrophy.',
+    price: 90.00,
+    currency: 'USD',
+    inventory_quantity: 20,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-growth-hormone',
+    category_name: 'Growth Hormone',
+    status: 'published',
+    featured: true,
+    requires_age_verification: true,
+    requires_acknowledgment: true,
+    acknowledgment_text: 'I acknowledge that this chemical compound is purchased exclusively for laboratory research.',
+    shipping_enabled: true,
+    disclaimer: 'Strictly for laboratory and research use only. Not for human consumption.',
+    images: ['https://bkresearchlabs.com/wp-content/uploads/2026/08/Tesamorelin.png'],
+    metadata: { csv_id: 18, tags: ['belly fat', 'IGF-1', 'pituitary', 'recovery', 'tesamorelin', 'visceral fat', 'weight loss'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-nad500mg',
+    sku: 'nad500mg',
+    name: 'NAD+ 500mg Lyophilized Powder',
+    slug: 'nad-500mg-lyophilized-powder',
+    description: 'NAD+ (Nicotinamide Adenine Dinucleotide) is a small-molecule coenzyme studied in cellular and molecular biology research for its central role in ATP production and DNA repair pathways.  As a coenzyme, it is investigated for its function in electron transfer within cellular energy systems and redox processes.  NAD+ is a subject of ongoing preclinical research into mitochondrial functions, cellular aging pathways, and neuronal metabolism.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'NAD+ a small-molecule coenzyme.  Mitochondrial function in cellular and molecular ATP production and DNA repair pathways with electron transfer within cellular energy systems, redox processes, cellular aging pathways, and neuronal metabolism.',
+    price: 75.00,
+    currency: 'USD',
+    inventory_quantity: 20,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-cellular',
+    category_name: 'Cellular',
+    status: 'published',
+    featured: true,
+    requires_age_verification: true,
+    requires_acknowledgment: false,
+    shipping_enabled: true,
+    disclaimer: 'For research use only. Store desiccated at 2-8°C.',
+    images: ['https://bkresearchlabs.com/wp-content/uploads/2026/08/NAD500.png'],
+    metadata: { csv_id: 19, tags: ['cellular energy', 'dna', 'nad', 'nads', 'repairs dna'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-motsc10mg',
+    sku: 'motsc10mg',
+    name: 'MOTS-c 10mg Lyophilized Powder',
+    slug: 'mots-c-10mg-lyophilized-powder',
+    description: 'MOTS-c (Mitochondrial Open Reading Frame of the 12S rRNA type-c) is a 16-amino-acid mitochondrial-derived compound, intended for controlled laboratory investigations of AMPK activation, glucose metabolism pathways, and mitochondrial retrograde signaling.  It has drawn research interest for its apparent role as a signaling molecule involved in the metabolic switch between glucose and fat utilization.  In preclinical models, MOTS-c has been studied for its association with fat oxidation and metabolic effects relevant to exercise physiology, without evidence of associated muscle loss in those models.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'MOTS-c a 16-amino-acid signaling molecule involved in the metabolic switch between glucose and fat utilization, oxidation, and metabolic effects relevant to exercise without associated muscle loss.',
+    price: 70.00,
+    currency: 'USD',
+    inventory_quantity: 60,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-cellular',
+    category_name: 'Cellular',
+    status: 'published',
+    featured: true,
+    requires_age_verification: true,
+    requires_acknowledgment: false,
+    shipping_enabled: true,
+    disclaimer: 'For laboratory research only.',
+    images: ['https://bkresearchlabs.com/wp-content/uploads/2026/08/MOTS-C.png'],
+    metadata: { csv_id: 20, tags: ['AMPK', 'insulin sensitivity', 'metabolism', 'mitochondria', 'mots', 'mots-c'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-ghkcu100mg',
+    sku: 'ghkcu100mg',
+    name: 'GHK-Cu 100mg Lyophilized Powder',
+    slug: 'ghk-cu-100mg-lyophilized-powder',
+    description: 'GHK-Cu (Glycyl-L-Histidyl-L-Lysine copper complex) is a naturally occurring copper-binding compound that has been studied for its potential role in modulating collagen and elastin synthesis.  Levels of the naturally occurring compound are known to decline with age, which has made it a frequent subject of research in skin biology and wound-healing models.  It has been investigated for effects on tissue firmness, fine-line appearance, and inflammatory response.   Also studied as an antioxidant, with research examining its potential to protect cells and tissue from free-radical and environmental damage in experimental models.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'GHK-Cu copper-binding compound promotes collagen, skin remodeling, wound healing, elastin synthesis and hair follicle health.  Affects tissue firmness, fine-line appearance, and inflammation.  As an antioxidant, protects cells and tissue from free-radical and environmental damage.',
+    price: 60.00,
+    currency: 'USD',
+    inventory_quantity: 40,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-skin-tissue',
+    category_name: 'Skin/Tissue',
+    status: 'published',
+    featured: true,
+    requires_age_verification: true,
+    requires_acknowledgment: false,
+    shipping_enabled: true,
+    disclaimer: 'For laboratory tissue culture and biochemical research.',
+    images: ['https://bkresearchlabs.com/wp-content/uploads/2026/08/GHK-Cu.png'],
+    metadata: { csv_id: 22, tags: ['collagen', 'ghk', 'ghk-c', 'ghk-cu', 'hair follicle', 'healing', 'inflammation'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-bpc15710mg',
+    sku: 'bpc15710mg',
+    name: 'BPC-157 10mg Lyophilized Powder',
+    slug: 'bpc-157-10mg-lyophilized-powder',
+    description: 'BPC-157 is a synthetic protein fragment derived from a sequence found in gastric proteins.  It is widely studied in preclinical research for its potential role in tissue repair and inflammation modulation.  In laboratory and animal models, BPC-157 has been investigated for its effects on tendon, ligament and gastrointestinal tissue repairs.  Research suggesting it may promote angiogenesis (new blood vessel formation) and collagen production; mechanisms of interest in studies of tissue repair in areas with limited blood supply.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'BPC-157 a synthetic protein fragment of gastric proteins for inflammation, promotes collagen production, tissue repair of tendons, ligaments, gastrointestinal tissue and promotes angiogenesis (new blood vessel formation) in areas with limited blood supply.',
+    price: 65.00,
+    currency: 'USD',
+    inventory_quantity: 100,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-skin-tissue',
+    category_name: 'Skin/Tissue',
+    status: 'published',
+    featured: true,
+    requires_age_verification: true,
+    requires_acknowledgment: true,
+    acknowledgment_text: 'I acknowledge that this chemical compound is purchased exclusively for laboratory research.',
+    shipping_enabled: true,
+    disclaimer: 'Strictly for in vitro research and calibration use only. Not for human consumption.',
+    images: ['https://bkresearchlabs.com/wp-content/uploads/2026/08/BPC-157.png'],
+    metadata: { csv_id: 24, tags: ['157', 'bp157', 'bpc', 'bpc-157', 'inflammation', 'recovery', 'soft tissue'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-bac500ml',
+    sku: 'bac500ml',
+    name: 'BAC 500ml Bacteriostatic Water',
+    slug: 'bac-500ml-bacteriostatic-water',
+    description: 'Bacteriostatic research grade water is sterile water containing 0.9% benzyl alcohol, which inhibits bacterial growth. This makes it a standard choice for reconstituting lyophilized (freeze-dried) protein fragment and protein samples in a research setting, as the preservative allows a single multi-dose vial to be accessed repeatedly over a typical 28-day period without compromising sterility.\n\nBacteriostatic Water is used for reconstituting Lyophilized Powder products for laboratory and research applications\n\n• Independent Lab Tested, Lot Verified',
+    short_description: 'Research grade water (0.9% benzyl alcohol) inhibits bacterial growth.  Used for reconstituting lyophilized (freeze-dried) protein fragments.  Preservative effects - allows a single multi-dose vial to be accessed repeatedly over a typical 28-day period.',
+    price: 20.00,
+    currency: 'USD',
+    inventory_quantity: 90,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-compounds-consumables',
+    category_name: 'Compounds & Consumables',
+    status: 'published',
+    featured: true,
+    requires_age_verification: true,
+    requires_acknowledgment: false,
+    shipping_enabled: true,
+    disclaimer: 'For laboratory reconstitution and research supply only. Not for injection or parenteral human use.',
+    images: ['https://bkresearchlabs.com/wp-content/uploads/2026/08/BAC-10ml.png'],
+    metadata: { csv_id: 25, tags: ['bac', 'bac water', 'bacwater', 'water'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-glp3rt10mg',
+    sku: 'glp3rt10mg',
+    name: 'GLP3-RT 10mg Lyophilized Powder',
+    slug: 'glp3-rt-10mg-lyophilized-powder',
+    description: 'Retatrutide an investigational triple-agonist compound studied for its activity at three hormone receptors: GLP-1, GIP, and Glucagon (GCGR).  In clinical and preclinical research, GLP-1 and GIP agonism have been associated with appetite suppression, slowed gastric emptying and improved glycemic control.  Glucagon receptor activity studied for its role in increasing energy expenditure and promoting breakdown of stored fat and hepatic fat clearance.  Retatrutide remains under clinical investigation and is not an approved pharmaceutical Rx product.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'Retatrutide a triple-agonist on 3 hormone receptors: GLP-1, GIP, and Glucagon (GCGR).  Appetite suppression, slows gastric emptying, improved glycemic control, increases energy expenditure and breakdown of stored fat and hepatic fat clearance.',
+    price: 75.00,
+    currency: 'USD',
+    inventory_quantity: 39,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-metabolic',
+    category_name: 'Metabolic',
+    status: 'published',
+    featured: true,
+    requires_age_verification: true,
+    requires_acknowledgment: true,
+    acknowledgment_text: 'I verify that this item will be used solely for laboratory metabolic benchmarking.',
+    shipping_enabled: true,
+    disclaimer: 'Strictly for institutional laboratory research.',
+    images: ['https://bkresearchlabs.com/wp-content/uploads/2026/08/GLP3-Reta-10mg.png'],
+    metadata: { csv_id: 26, tags: ['blood sugar', 'glp', 'glp3', 'glp3-rt', 'glp3rt', 'metabolic', 'reta', 'weight loss'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-wolver10mg',
+    sku: 'wolver10mg',
+    name: 'WOLVERINE 10mg Blend Lyophilized Powder',
+    slug: 'wolverine-10mg-blend-lyophilized-powder',
+    description: 'Wolverine is a research blend containing 5 mg of BPC-157 and 5 mg of TB-500. This combination has been studied in preclinical research, including animal models, investigating musculoskeletal and connective tissue repair.\n\nBPC-157 is synthetic, consisting of 15 amino acids derived from a sequence originally identified in human gastric juice. In animal models, it has been investigated for angiogenesis through VEGF pathway modulation, tendon-to-bone healing, ligament repair, GI mucosal protection, and nitric oxide pathway modulation.\n\nTB-500 is a synthetic analogue of Thymosin Beta-4. It has been studied for its ability to bind G-actin and modulate actin polymerization, resulting in enhanced migration of fibroblasts, keratinocytes, and endothelial cells.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'Wolverine a blend of 5 mg of BPC-157 and 5 mg of TB-500.  Combination - affects musculoskeletal, tendon, ligament, muscle and other connective tissue repair processes, vascular remodeling and cellular migration during tissue repair.',
+    price: 95.00,
+    currency: 'USD',
+    inventory_quantity: 10,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-skin-tissue',
+    category_name: 'Skin/Tissue',
+    status: 'published',
+    featured: true,
+    requires_age_verification: true,
+    requires_acknowledgment: true,
+    shipping_enabled: true,
+    disclaimer: 'For laboratory research only.',
+    images: ['https://bkresearchlabs.com/wp-content/uploads/2026/08/Wolverine-Blend.png'],
+    metadata: { csv_id: 253, tags: ['157', '500', 'blend', 'bp7', 'healing', 'inflammation', 'soft tissue', 'stack', 'tb', 'wolverine'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-ipm1295nd10mg',
+    sku: 'ipm1295nd10mg',
+    name: 'CJC-1295 (No DAC)/IPAMORELIN 10mg, Blend (5mg/5mg) Lyophilized Powder',
+    slug: 'cjc-1295-no-dac-ipamorelin-10mg-blend',
+    description: 'CJC-1295 and Ipamorelin blended together work in synergy to signal the pituitary gland to produce growth hormone.  CJC-1295 with no DAC provides the shorter duration of hormone release and Ipamorelin triggers a strong and clean release of stored growth hormone without spiking stress hormones of cortisol or prolactin.\n\n• CJC-1295: Acts as a growth hormone-releasing hormone (GHRH) analog.\n• Ipamorelin: Acts as a selective growth hormone secretagogue and ghrelin receptor agonist.\n• Synergy: Combined, they mimic and amplify the body\'s natural pulsatile hormone rhythm better than either single compound.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'CJC-1295 and Ipamorelin blended together work in synergy to signal the pituitary gland to produce growth hormone.  CJC-1295 (w/o DAC) has short acting duration of hormone release.  Ipamorelin triggers release of stored growth hormone without spiking cortisol or prolactin stress hormones.  Combined - mimic and amplify the body\'s natural pulsatile hormone rhythm.',
+    price: 90.00,
+    currency: 'USD',
+    inventory_quantity: 20,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-growth-hormone',
+    category_name: 'Growth Hormone',
+    status: 'published',
+    featured: true,
+    requires_age_verification: true,
+    requires_acknowledgment: true,
+    shipping_enabled: true,
+    disclaimer: 'For laboratory research only.',
+    images: ['https://bkresearchlabs.com/wp-content/uploads/2026/08/CJC.png'],
+    metadata: { csv_id: 255, tags: ['1295', 'cjc', 'cjc-1295', 'IGF-1', 'ipamorelin', 'no dac', 'pituitary', 'sleep'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-tb50010mg',
+    sku: 'tb50010mg',
+    name: 'TB-500 10mg Lyophilized Powder',
+    slug: 'tb-500-10mg-lyophilized-powder',
+    description: 'TB-500 is synthetic compound corresponding to the active region (amino acids 17–23) of Thymosin Beta-4, a naturally occurring 43-amino acid compound found in a wide variety of human and animal cells. It has been investigated in preclinical research as a model for studying biological processes associated with cytoskeletal organization and cellular signaling.\n\nPreclinical studies have examined TB-500\'s interactions with G-actin and its role in actin polymerization, a process involved in cell migration and structural organization. Research has also explored its activity in experimental models investigating cellular migration, angiogenesis, and tissue remodeling.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'TB-500 a synthetic, naturally occurring 43-amino acid compound found in human and animal cells. Associated with cytoskeletal organization, cellular signaling, cellular migration, angiogenesis, and tissue remodeling.',
+    price: 120.00,
+    currency: 'USD',
+    inventory_quantity: 10,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-cellular',
+    category_name: 'Cellular',
+    status: 'published',
+    featured: true,
+    requires_age_verification: true,
+    requires_acknowledgment: true,
+    shipping_enabled: true,
+    disclaimer: 'For in vitro laboratory research.',
+    images: ['https://bkresearchlabs.com/wp-content/uploads/2026/08/TB-500.png'],
+    metadata: { csv_id: 256, tags: ['anti-inflammatory', 'inflammation', 'recovery', 'tb', 'tb500'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-kpv10mg',
+    sku: 'kpv10mg',
+    name: 'KPV 10mg Lyophilized Powder',
+    slug: 'kpv-10mg-lyophilized-powder',
+    description: 'KPV is a synthetic tripeptide composed of lysine, proline, and valine. It corresponds to the C-terminal fragment of alpha-melanocyte-stimulating hormone (α-MSH) and has been investigated in preclinical research for its role in inflammatory signaling and immune response pathways.\n\nPreclinical studies have examined KPV\'s interactions with molecular pathways involved in inflammatory regulation, epithelial barrier function, and cellular signaling.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'KPV a synthetic tripeptide C-terminal fragment of alpha-melanocyte-stimulating hormone (α-MSH), it interacts with inflammatory signaling regulation and immune response.',
+    price: 55.00,
+    currency: 'USD',
+    inventory_quantity: 10,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-hormone',
+    category_name: 'Hormone',
+    status: 'published',
+    featured: false,
+    requires_age_verification: true,
+    requires_acknowledgment: false,
+    shipping_enabled: true,
+    disclaimer: 'For laboratory study only.',
+    images: ['https://bkresearchlabs.com/wp-content/uploads/2026/08/KPV.png'],
+    metadata: { csv_id: 257, tags: ['anti-inflammatory', 'inflammation', 'kpv'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-dsip10mg',
+    sku: 'dsip10mg',
+    name: 'DSIP 10mg Lyophilized Powder',
+    slug: 'dsip-10mg-lyophilized-powder',
+    description: 'Delta Sleep-Inducing (DSIP) is a naturally occurring compound, first isolated from the cerebral venous blood of rabbits in 1977.  Since its discovery, it has been investigated in preclinical research for its potential role in neuroendocrine signaling and the regulation of biological processes associated with the sleep–wake cycle.\n\nPreclinical studies have explored DSIP\'s interactions with the hypothalamic-pituitary-adrenal (HPA) axis, neurotransmitter systems, and other pathways involved in neuroendocrine function.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'Delta Sleep-Inducing (DSIP) neuroendocrine signaling compound.  Affects regulation of sleep–wake cycle. Interacts with the hypothalamic-pituitary-adrenal (HPA) axis, neurotransmitter systems, and other pathways.',
+    price: 75.00,
+    currency: 'USD',
+    inventory_quantity: 7,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-brain',
+    category_name: 'Brain',
+    status: 'published',
+    featured: false,
+    requires_age_verification: true,
+    requires_acknowledgment: false,
+    shipping_enabled: true,
+    disclaimer: 'For laboratory study only.',
+    images: ['https://bkresearchlabs.com/wp-content/uploads/2026/08/DSIP.png'],
+    metadata: { csv_id: 261, tags: ['dsip', 'pituitary', 'sleep', 'slow wave'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-glp3rt20mg',
+    sku: 'glp3rt20mg',
+    name: 'GLP3-RT 20mg Lyophilized Powder',
+    slug: 'glp3-rt-20mg-lyophilized-powder',
+    description: 'Retatrutide an investigational triple-agonist compound studied for its activity at three hormone receptors: GLP-1, GIP, and Glucagon (GCGR).  In clinical and preclinical research, GLP-1 and GIP agonism have been associated with appetite suppression, slowed gastric emptying and improved glycemic control.  Glucagon receptor activity studied for its role in increasing energy expenditure and promoting breakdown of stored fat and hepatic fat clearance.\n\nThe 20mg compound is exactly the same as the 10mg, only the fill weight is doubled.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'Retatrutide a triple-agonist on 3 hormone receptors: GLP-1, GIP, and Glucagon (GCGR).  Appetite suppression, slows gastric emptying, improved glycemic control, increases energy expenditure and breakdown of stored fat and hepatic fat clearance.\n\nThe 20mg compound is exactly the same as the 10mg, only the fill weight doubled.',
+    price: 140.00,
+    currency: 'USD',
+    inventory_quantity: 9,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-metabolic',
+    category_name: 'Metabolic',
+    status: 'published',
+    featured: true,
+    requires_age_verification: true,
+    requires_acknowledgment: true,
+    shipping_enabled: true,
+    disclaimer: 'Strictly for institutional laboratory research.',
+    images: ['https://bkresearchlabs.com/wp-content/uploads/2026/08/GLP3-Reta-20mg.png'],
+    metadata: { csv_id: 443, tags: ['blood sugar', 'glp', 'glp3', 'glp3-rt', 'glp3rt', 'metabolic', 'reta', 'weight loss'], size: '10 Mg, 20 Mg', price_options: '$75, $140' },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-semx10mg',
+    sku: 'semx10mg',
+    name: 'Semax 10mg Lyophilized Powder',
+    slug: 'semax-10mg-lyophilized-powder',
+    description: 'Semax (10mg) heptapeptide analog of ACTH(4-10) for neuroprotection, cholinergic transmission, dopamine signaling, and cognitive signaling assays.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'Semax 10mg heptapeptide analog of ACTH(4-10) for neuroprotection, cholinergic transmission, and cognitive signaling assays.',
+    price: 200.00,
+    currency: 'USD',
+    inventory_quantity: 25,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-hormone',
+    category_name: 'Hormone',
+    status: 'published',
+    featured: false,
+    requires_age_verification: true,
+    requires_acknowledgment: false,
+    shipping_enabled: true,
+    disclaimer: 'For laboratory study only.',
+    images: ['https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80&w=800'],
+    metadata: { csv_id: 1065, tags: ['dopamine', 'focus', 'memory', 'semax', 'serotonin'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-epit5mg',
+    sku: 'epit5mg',
+    name: 'Epitalon 5mg Lyophilized Powder',
+    slug: 'epitalon-5mg-lyophilized-powder',
+    description: 'Epitalon (5mg) is a synthetic tetrapeptide studied for telomerase activity, circadian regulation, and chromatin structural research in cellular models.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'Epitalon 5mg synthetic tetrapeptide for telomerase activity, circadian regulation, and chromatin structural research.',
+    price: 200.00,
+    currency: 'USD',
+    inventory_quantity: 25,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-cellular',
+    category_name: 'Cellular',
+    status: 'published',
+    featured: false,
+    requires_age_verification: true,
+    requires_acknowledgment: false,
+    shipping_enabled: true,
+    disclaimer: 'For laboratory study only.',
+    images: ['https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=800'],
+    metadata: { csv_id: 1066, tags: ['aging', 'chromo', 'epitalon'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-impa10mg',
+    sku: 'impa10mg',
+    name: 'Impamorelin 10mg Lyophilized Powder',
+    slug: 'impamorelin-10mg-lyophilized-powder',
+    description: 'Impamorelin (10mg) is a selective growth hormone secretagogue and ghrelin receptor agonist for somatotroph stimulation research without stress hormone elevation.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'Impamorelin 10mg selective growth hormone secretagogue and ghrelin receptor agonist for somatotrophic research.',
+    price: 200.00,
+    currency: 'USD',
+    inventory_quantity: 25,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-growth-hormone',
+    category_name: 'Growth Hormone',
+    status: 'published',
+    featured: false,
+    requires_age_verification: true,
+    requires_acknowledgment: false,
+    shipping_enabled: true,
+    disclaimer: 'For laboratory study only.',
+    images: ['https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80&w=800'],
+    metadata: { csv_id: 1067, tags: ['ghrelin', 'impamorelin', 'pituitary', 'sleep'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-epit10mg',
+    sku: 'epit10mg',
+    name: 'Epitalon 10mg Lyophilized Powder',
+    slug: 'epitalon-10mg-lyophilized-powder',
+    description: 'Epitalon (10mg) double-strength synthetic tetrapeptide reference standard for telomerase activity and epigenetics research.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'Epitalon 10mg synthetic tetrapeptide double-strength standard for telomerase and epigenetic pathway studies.',
+    price: 200.00,
+    currency: 'USD',
+    inventory_quantity: 25,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-cellular',
+    category_name: 'Cellular',
+    status: 'published',
+    featured: false,
+    requires_age_verification: true,
+    requires_acknowledgment: false,
+    shipping_enabled: true,
+    disclaimer: 'For laboratory study only.',
+    images: ['https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=800'],
+    metadata: { csv_id: 1068, tags: ['aging', 'chromo', 'epitalon'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-semo10mg',
+    sku: 'semo10mg',
+    name: 'Semorelin 10mg Lyophilized Powder',
+    slug: 'semorelin-10mg-lyophilized-powder',
+    description: 'Sermorelin (10mg) growth hormone-releasing factor analog (GRF 1-29) for pituitary somatotroph signaling and neurochemical recovery research.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'Sermorelin 10mg GHRH fragment analog (GRF 1-29) for pituitary somatotroph receptor signaling and recovery research.',
+    price: 200.00,
+    currency: 'USD',
+    inventory_quantity: 25,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-brain',
+    category_name: 'Brain',
+    status: 'published',
+    featured: false,
+    requires_age_verification: true,
+    requires_acknowledgment: false,
+    shipping_enabled: true,
+    disclaimer: 'For laboratory study only.',
+    images: ['https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80&w=800'],
+    metadata: { csv_id: 1069, tags: ['energy', 'recovery', 'semorelin', 'sleep'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-pt14110mg',
+    sku: 'pt14110mg',
+    name: 'PT-141 10mg Lyophilized Powder',
+    slug: 'pt-141-10mg-lyophilized-powder',
+    description: 'Bremelanotide (PT-141) 10mg melanocortin receptor agonist (MC3-R / MC4-R) for central nervous system receptor pathway studies.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'PT-141 (Bremelanotide) 10mg central melanocortin receptor agonist reference compound.',
+    price: 200.00,
+    currency: 'USD',
+    inventory_quantity: 25,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-brain',
+    category_name: 'Brain',
+    status: 'published',
+    featured: false,
+    requires_age_verification: true,
+    requires_acknowledgment: false,
+    shipping_enabled: true,
+    disclaimer: 'For laboratory study only.',
+    images: ['https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80&w=800'],
+    metadata: { csv_id: 1070, tags: ['141', 'desire', 'pt-141', 'pt141', 'sex'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-ss3110mg',
+    sku: 'ss3110mg',
+    name: 'SS-31 10mg Lyophilized Powder',
+    slug: 'ss-31-10mg-lyophilized-powder',
+    description: 'SS-31 (Elamipretide) 10mg cardiolipin-targeted mitochondrial peptide for inner mitochondrial membrane electron transport chain and oxidative stress studies.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'SS-31 (Elamipretide) 10mg cardiolipin-binding peptide for mitochondrial bioenergetics research.',
+    price: 200.00,
+    currency: 'USD',
+    inventory_quantity: 25,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-cellular',
+    category_name: 'Cellular',
+    status: 'published',
+    featured: false,
+    requires_age_verification: true,
+    requires_acknowledgment: false,
+    shipping_enabled: true,
+    disclaimer: 'For laboratory study only.',
+    images: ['https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=800'],
+    metadata: { csv_id: 1071, tags: ['cellular energy', 'mitochondria', 'oxidative stress', 'ss-31', 'ss31'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'prod-kiss10mg',
+    sku: 'kiss10mg',
+    name: 'KISS 10mg Lyophilized Powder',
+    slug: 'kiss-10mg-lyophilized-powder',
+    description: 'Kisspeptin (KISS) 10mg G-protein coupled receptor (GPR54) peptide agonist for gonadotropin-releasing hormone (GnRH) neuroendocrine signaling research.\n\n• For Research use only\n• Not for human use\n• 99% Pure\n• Independent Lab Tested, Lot Verified',
+    short_description: 'Kisspeptin (KISS) 10mg neuroendocrine peptide agonist for GnRH pathway research.',
+    price: 200.00,
+    currency: 'USD',
+    inventory_quantity: 25,
+    inventory_tracking_enabled: true,
+    category_id: 'cat-hormone',
+    category_name: 'Hormone',
+    status: 'published',
+    featured: false,
+    requires_age_verification: true,
+    requires_acknowledgment: false,
+    shipping_enabled: true,
+    disclaimer: 'For laboratory study only.',
+    images: ['https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&q=80&w=800'],
+    metadata: { csv_id: 1072, tags: ['estrogen', 'fertility', 'hormone', 'kiss', 'kss', 'sex', 'testosterone'] },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  }
+];
+
+export const INITIAL_SITE_SETTINGS: SiteSettings = {
+  site_name: 'BK Research Labs',
+  tagline: 'Precision Analytical Compounds & Research Materials',
+  primary_color: '#002b29',
+  contact_email: 'support@bkresearchlabs.com',
+  contact_phone: '+1 (800) 555-BKRL',
+  address: '100 Research Parkway, Suite 400, Cambridge, MA 02142',
+  age_gate_enabled: true,
+  age_gate_min_age: 21,
+  age_gate_title: 'Welcome to BK Research Labs',
+  age_gate_message: 'By entering this laboratory store, you confirm that you are at least 21 years of age and represent an authorized institution or research entity.',
+  currency: 'USD',
+  currency_symbol: '$',
+  tax_rate_percentage: 6.5,
+  free_shipping_threshold: 150.00,
+  standard_shipping_fee: 12.50,
+  maintenance_mode: false,
+  default_language: 'en',
+  supported_languages: ['en', 'es', 'fr', 'de', 'ar'],
+  store_profile: {
+    legal_business_name: 'BK Research Labs Inc.',
+    dba_name: 'BK Research Labs',
+    tax_id_ein: 'XX-XXXXXXX (MA State Registered Entity)',
+    support_phone: '+1 (800) 555-BKRL',
+    order_notification_email: 'orders@bkresearchlabs.com',
+    support_email: 'support@bkresearchlabs.com',
+    street_address: '100 Research Parkway, Suite 400',
+    city: 'Cambridge',
+    state_province: 'MA',
+    postal_code: '02142',
+    country: 'United States',
+    timezone: 'America/New_York (EST/EDT)',
+    business_hours: 'Monday – Friday: 8:00 AM – 8:00 PM EST',
+    favicon_url: 'https://bkresearchlabs.com/favicon.ico',
+    meta_title: 'BK Research Labs | Precision Analytical Compounds & Research Standards',
+    meta_description: 'High-purity chemical compounds, lyophilized peptides, and certified reference standards with lot-specific HPLC & MS verification.',
+    meta_keywords: 'analytical compounds, research peptides, HPLC reference standards, BPC-157, NAD+, chemical synthesis',
+    social_links: {
+      twitter: 'https://x.com/bkresearchlabs',
+      instagram: 'https://instagram.com/bkresearchlabs',
+      linkedin: 'https://linkedin.com/company/bkresearchlabs',
+      youtube: 'https://youtube.com/@bkresearchlabs',
+      discord: 'https://discord.gg/bkresearchlabs',
+      github: 'https://github.com/bkresearchlabs'
+    }
+  },
+  supabase_config: {
+    project_url: 'https://xqqjaylwikpkkngtprno.supabase.co',
+    anon_key: 'sb_publishable_UWuWJKCL82N07HbjtZNG6Q_i2WRUtIU',
+    service_role_key: '',
+    project_id: 'xqqjaylwikpkkngtprno',
+    sync_mode: 'cloud_first',
+    last_tested_at: new Date().toISOString(),
+    connection_status: 'connected',
+    storage_buckets: {
+      product_images: true,
+      coas_and_documents: true,
+      app_releases: true,
+      office_files: true
+    }
+  },
+  store_onboarding: {
+    completed_steps: [
+      'store_profile',
+      'products_catalog',
+      'payment_gateways',
+      'supabase_database',
+      'shipping_tax',
+      'security_waf'
+    ],
+    dismissed: false,
+    setup_completed_at: new Date().toISOString()
+  },
+  google_auth: {
+    enabled: true,
+    client_id: '661881308022-applet-bkrl.apps.googleusercontent.com',
+    client_secret: 'GOCSPX-demo_secret_key_bkrl_labs',
+    one_tap_enabled: true,
+    auto_login_domain_match: true,
+    allowed_domains: '',
+    default_user_role: 'customer',
+    button_theme: 'filled_blue',
+    button_shape: 'rectangular',
+    button_text: 'signin_with',
+    auto_approve_new_users: true,
+    last_configured_at: new Date().toISOString()
+  },
+  google_services: {
+    voice: {
+      enabled: true,
+      phone_number: '+1 (800) 555-BKRL',
+      account_email: 'voice@bkresearchlabs.com',
+      forwarding_number: '+1 (415) 890-2575',
+      call_recording_enabled: true,
+      voicemail_transcription: true,
+      sms_order_updates_enabled: true,
+      sms_dispatch_notifications_enabled: true,
+      click_to_call_storefront_widget: true,
+      business_hours: {
+        start: '08:00',
+        end: '20:00',
+        timezone: 'America/New_York',
+        auto_responder_msg: 'Thank you for calling BK Research Labs. Our analytical laboratory lines are currently offline. Please leave a voicemail with your order # or visit bkresearchlabs.com.'
+      },
+      webhook_url: 'https://api.bkresearchlabs.com/google/voice/events',
+      status: 'connected',
+      test_call_history: [
+        { id: 'vc-1', caller: '+1 (617) 555-0192', duration: '2m 14s', type: 'inbound', timestamp: new Date(Date.now() - 3600000 * 2).toISOString(), status: 'completed' },
+        { id: 'vc-2', caller: '+1 (800) 555-BKRL', duration: 'SMS Alert', type: 'sms', timestamp: new Date(Date.now() - 3600000 * 4).toISOString(), status: 'delivered' },
+        { id: 'vc-3', caller: '+1 (212) 555-8841', duration: '45s', type: 'inbound', timestamp: new Date(Date.now() - 3600000 * 18).toISOString(), status: 'voicemail' }
+      ]
+    },
+    workspace: {
+      enabled: true,
+      domain: 'bkresearchlabs.com',
+      admin_email: 'admin@bkresearchlabs.com',
+      service_account_email: 'service-account@bkrl-ecommerce.iam.gserviceaccount.com',
+      gmail_api_sync: true,
+      spf_verified: true,
+      dkim_verified: true,
+      dmarc_verified: true,
+      inboxes: [
+        { id: 'ibx-1', department: 'Executive & Ownership', email: 'bkresearchlabs@gmail.com', alias: 'owner@bkresearchlabs.com', active: true, unread_count: 2 },
+        { id: 'ibx-2', department: 'Customer & Technical Care', email: 'support@bkresearchlabs.com', alias: 'help@bkresearchlabs.com', active: true, unread_count: 5 },
+        { id: 'ibx-3', department: 'Order Fulfillment & Tracking', email: 'orders@bkresearchlabs.com', alias: 'dispatch@bkresearchlabs.com', active: true, unread_count: 1 },
+        { id: 'ibx-4', department: 'Analytical Chemistry & COA Inquiries', email: 'lab@bkresearchlabs.com', alias: 'qc@bkresearchlabs.com', active: true, unread_count: 0 }
+      ],
+      auto_bcc_orders_email: 'orders-archive@bkresearchlabs.com'
+    },
+    merchant: {
+      enabled: true,
+      merchant_id: '539182049',
+      feed_url: 'https://ais-dev-km6jg23csaktgdfzq6h53y-661881308022.us-west2.run.app/api/google/merchant-feed.xml',
+      auto_sync_interval_hours: 6,
+      target_country: 'US',
+      target_currency: 'USD',
+      content_api_status: 'connected',
+      include_out_of_stock: false,
+      product_condition: 'new',
+      age_group_filter: 'adult',
+      custom_label_0: 'Analytical Grade',
+      custom_label_1: 'Cold Chain',
+      last_synced_at: new Date().toISOString(),
+      total_products_synced: 38
+    },
+    analytics: {
+      enabled: true,
+      measurement_id: 'G-BKRL988X21',
+      gtm_container_id: 'GTM-BKRL2026',
+      enhanced_ecommerce: true,
+      anonymize_ip: true,
+      debug_mode: false,
+      track_coa_downloads: true,
+      track_outbound_links: true,
+      user_id_tracking: true
+    },
+    ads: {
+      enabled: true,
+      conversion_id: 'AW-987654321',
+      conversion_label: 'aBcD1234EfgHiJk',
+      enhanced_conversions: true,
+      remarketing_tag: true,
+      currency_code: 'USD'
+    },
+    search_console: {
+      enabled: true,
+      verification_token: 'google-site-verification=bkrl_search_console_token_991823a',
+      sitemap_url: 'https://ais-dev-km6jg23csaktgdfzq6h53y-661881308022.us-west2.run.app/sitemap.xml',
+      googlebot_indexing: true,
+      canonical_domain: 'https://bkresearchlabs.com',
+      rich_snippets_enabled: true
+    },
+    maps: {
+      enabled: true,
+      api_key: 'AIzaSyDemo_GoogleMaps_API_Key_BKRL_2026',
+      places_autocomplete_checkout: true,
+      address_validation_api: true,
+      store_locator_lat: 42.3601,
+      store_locator_lng: -71.0942,
+      store_locator_zoom: 14,
+      warehouse_address: '100 Research Parkway, Suite 400, Cambridge, MA 02142'
+    },
+    drive: {
+      enabled: true,
+      backup_invoices: true,
+      backup_coas: true,
+      shared_drive_id: '0A-BKRL-COA-DRIVE-SHARED-99',
+      folder_path: '/BK-Research-Labs/Automated-Backups-2026/',
+      last_backup_at: new Date(Date.now() - 3600000 * 3).toISOString(),
+      storage_used_mb: 482.5
+    },
+    business_profile: {
+      enabled: true,
+      account_id: 'accounts/1089201948102948',
+      location_id: 'locations/8810294810294810',
+      show_reviews_badge: true,
+      auto_request_review_after_delivery: true,
+      rating: 4.9,
+      review_count: 148,
+      reviews_url: 'https://g.page/r/bkresearchlabs/review'
+    },
+    auth: {
+      enabled: true,
+      client_id: '661881308022-applet-bkrl.apps.googleusercontent.com',
+      client_secret: 'GOCSPX-demo_secret_key_bkrl_labs',
+      one_tap_enabled: true,
+      auto_login_domain_match: true,
+      allowed_domains: '',
+      default_user_role: 'customer',
+      button_theme: 'filled_blue',
+      button_shape: 'rectangular',
+      button_text: 'signin_with',
+      auto_approve_new_users: true,
+      last_configured_at: new Date().toISOString()
+    },
+    translate: {
+      enabled: true,
+      api_key: 'AIzaSyGoogleTranslate_Cloud_API_Key_Demo_2026',
+      project_id: 'bkrl-ecommerce-2026',
+      default_source_language: 'en',
+      target_languages: [
+        'en', 'es', 'fr', 'de', 'ja', 'zh', 'ar', 'ru', 'pt', 'it',
+        'ko', 'nl', 'pl', 'tr', 'hi', 'vi', 'sv', 'el', 'th', 'he',
+        'id', 'cs', 'da', 'fi', 'no', 'uk'
+      ],
+      auto_translate_widget_enabled: true,
+      widget_layout: 'custom_dropdown',
+      enable_cloud_api_proxy: true,
+      hide_google_branding: true,
+      prevent_layout_shift: true,
+      auto_detect_user_language: true,
+      persist_language_choice: true,
+      enable_seo_hreflang: true,
+      excluded_selectors: [
+        '.notranslate',
+        '[translate="no"]',
+        '.brand-logo-text',
+        '.cas-number',
+        '.batch-code',
+        '.chemical-formula',
+        '.sha256-hash',
+        'code',
+        'pre',
+        '.currency-amount'
+      ],
+      translation_cache_enabled: true,
+      status: 'connected',
+      last_tested_at: new Date().toISOString(),
+      total_translations_count: 1420
+    }
+  },
+  customer_dashboard: {
+    welcome_message: 'Welcome to your BK Research Labs portal. Access your orders, lab reports, and direct scientific support.',
+    announcement_enabled: true,
+    announcement_text: '⚡ Priority Dispatch: Next-day cold-chain shipping active on all reference peptides and culture media.',
+    support_email: 'support@bkresearchlabs.com',
+    support_phone: '+1 (800) 555-BKRL',
+    support_hours: 'Monday – Friday: 8:00 AM – 8:00 PM EST',
+    show_quick_reorder: true,
+    show_coa_vault: true,
+    show_rewards_tier: true,
+    show_saved_items: true,
+    show_address_book: true,
+    show_support_portal: true,
+    show_security_tab: true,
+    custom_faq_items: [
+      {
+        id: 'faq-1',
+        question: 'How do I download lot-specific Certificates of Analysis (COAs)?',
+        answer: 'Navigate to the COA & Lab Reports tab in your customer dashboard, or click any completed order in your order history to download lot-specific HPLC & MS purity reports directly.',
+        category: 'Quality Assurance'
+      },
+      {
+        id: 'faq-2',
+        question: 'What cold-chain preservation protocols are used during transit?',
+        answer: 'Temperature-sensitive compounds are packaged in insulated thermal containers with solid CO2 dry ice or refrigerated gel cold packs to ensure 100% bioactivity upon arrival.',
+        category: 'Shipping & Logistics'
+      },
+      {
+        id: 'faq-3',
+        question: 'How do I submit an institutional Purchase Order (PO) or tax-exempt order?',
+        answer: 'At checkout, select "Online Banking / Wire & ACH Transfer" and enter your PO reference number. You can also email support@bkresearchlabs.com for direct institutional invoice billing.',
+        category: 'Billing & POs'
+      }
+    ]
+  },
+  spacing_config: {
+    global_container: { marginTop: 0, marginRight: 0, marginBottom: 0, marginLeft: 0, paddingTop: 16, paddingRight: 24, paddingBottom: 32, paddingLeft: 24, maxWidth: 1280, borderRadius: 16 },
+    hero_section: { marginTop: 0, marginRight: 0, marginBottom: 0, marginLeft: 0, paddingTop: 12, paddingRight: 24, paddingBottom: 48, paddingLeft: 24, gap: 32, borderRadius: 0 },
+    announcement_bar: { marginTop: 0, marginRight: 0, marginBottom: 0, marginLeft: 0, paddingTop: 8, paddingRight: 16, paddingBottom: 8, paddingLeft: 16, borderRadius: 0 },
+    header_nav: { marginTop: 0, marginRight: 0, marginBottom: 0, marginLeft: 0, paddingTop: 12, paddingRight: 24, paddingBottom: 12, paddingLeft: 24, gap: 16, borderRadius: 0 },
+    category_grid: { marginTop: 24, marginRight: 0, marginBottom: 32, marginLeft: 0, paddingTop: 24, paddingRight: 24, paddingBottom: 24, paddingLeft: 24, gap: 24, borderRadius: 24 },
+    product_grid: { marginTop: 24, marginRight: 0, marginBottom: 32, marginLeft: 0, paddingTop: 24, paddingRight: 24, paddingBottom: 24, paddingLeft: 24, gap: 24, borderRadius: 24 },
+    product_card: { marginTop: 0, marginRight: 0, marginBottom: 0, marginLeft: 0, paddingTop: 16, paddingRight: 16, paddingBottom: 16, paddingLeft: 16, gap: 12, borderRadius: 20 },
+    guarantees_banner: { marginTop: 32, marginRight: 0, marginBottom: 32, marginLeft: 0, paddingTop: 32, paddingRight: 24, paddingBottom: 32, paddingLeft: 24, gap: 24, borderRadius: 24 },
+    footer_section: { marginTop: 48, marginRight: 0, marginBottom: 0, marginLeft: 0, paddingTop: 48, paddingRight: 24, paddingBottom: 48, paddingLeft: 24, gap: 32, borderRadius: 0 },
+    product_quick_view: { marginTop: 0, marginRight: 0, marginBottom: 16, marginLeft: 0, paddingTop: 24, paddingRight: 24, paddingBottom: 24, paddingLeft: 24, gap: 24, borderRadius: 16, maxWidth: 1024 }
+  },
+  theme_config: {
+    preset: 'lab_emerald',
+    primary_color: '#002b29',
+    accent_color: '#10b981',
+    background_mode: 'dark_obsidian',
+    border_radius_style: 'rounded',
+    font_family_pair: 'serif_display',
+    card_glass_effect: true,
+    high_contrast_mode: false,
+  },
+  navigation_config: {
+    global_mode: 'page',
+    header_layout: 'standard',
+    show_home_link: true,
+    show_qr_app_button: true,
+    show_lang_selector: true,
+    show_device_selector: true,
+    show_search_button: true,
+    menu_items: {
+      shop: { id: 'shop', label: 'Shop', enabled: true, mode: 'default', order: 1 },
+      categories: { id: 'categories', label: 'Categories', enabled: true, mode: 'default', order: 2 },
+      'save-for-later': { id: 'save-for-later', label: 'Saved Compounds', enabled: true, mode: 'default', order: 3 },
+      orders: { id: 'orders', label: 'Orders & COAs', enabled: true, mode: 'default', order: 4 },
+      guide: { id: 'guide', label: 'User Guide', enabled: true, mode: 'default', order: 5 },
+    }
+  },
+  popups_config: {
+    shop: {
+      title: 'Research Compounds & Analytical Product Catalog',
+      subtitle: 'Explore ultra-pure analytical standards, peptide lyophilized formulations, and biological reagents.',
+      search_placeholder: 'Search compounds, CAS#, molecular formulas, or purity...',
+      all_compounds_badge: 'All Compounds',
+      quick_view_button_text: 'Quick View',
+      add_to_cart_button_text: 'Add to Cart',
+      stock_badge_text: 'In Stock & Verified',
+      price_suffix: '/ vial',
+      downloadables: {
+        show_downloadables: true,
+        section_title: 'Official Analytical Protocols & Technical Guides',
+        section_subtitle: 'Download lot-verified HPLC chromatograms, reconstitution guides, and scientific datasets.',
+        selected_downloadable_ids: ['dl-coa-master-archive', 'dl-tesamorelin-dossier', 'dl-mots-c-guide'],
+        display_style: 'cards_grid',
+        allow_instant_download: true,
+        show_file_size_and_version: true,
+        show_access_rules: true,
+        custom_badge_text: 'Verified Lab Asset'
+      }
+    },
+    categories: {
+      title: 'Chemical Categories & Scientific Disciplines',
+      subtitle: 'Browse high-purity research materials organized by biological signaling pathways and metabolic domains.',
+      view_compounds_cta: 'View Compounds',
+      badge_text: 'Targeted Pathway',
+      downloadables: {
+        show_downloadables: true,
+        section_title: 'Categorized Scientific Dossiers & Specifications',
+        section_subtitle: 'Access comprehensive pathway manuals and category specification binders.',
+        selected_downloadable_ids: ['dl-coa-master-archive', 'dl-spectral-analyzer'],
+        display_style: 'compact_list',
+        allow_instant_download: true,
+        show_file_size_and_version: true,
+        show_access_rules: true,
+        custom_badge_text: 'Curated Guide'
+      }
+    },
+    'save-for-later': {
+      title: 'Saved Compounds & Reference Standards Workbench',
+      subtitle: 'Keep track of experimental chemicals and prospective assays for future research procurement.',
+      empty_title: 'Your Research Workbench is Empty',
+      empty_subtitle: 'Save active reference compounds during catalog exploration for quick access and batch ordering.',
+      empty_cta_text: 'Browse Catalog Compounds',
+      quick_view_text: 'Details',
+      add_button_text: 'Add',
+      downloadables: {
+        show_downloadables: true,
+        section_title: 'Recommended Reference Documents for Saved Research',
+        section_subtitle: 'Essential laboratory calibration datasets and spectral analytical tooling.',
+        selected_downloadable_ids: ['dl-coa-master-archive', 'dl-vip-lab-dossier'],
+        display_style: 'compact_list',
+        allow_instant_download: true,
+        show_file_size_and_version: true,
+        show_access_rules: true,
+        custom_badge_text: 'Workbench Toolkit'
+      }
+    },
+    orders: {
+      title: 'Customer Orders & Lot Certificate (COA) Vault',
+      subtitle: 'View historical laboratory dispatches, cold-chain tracking numbers, and download lot-specific analytical reports.',
+      empty_title: 'No Recorded Order Dispatches',
+      empty_subtitle: 'When you place an order, your cold-chain shipment status and lot-specific COAs will be accessible here.',
+      coa_vault_banner_title: 'Digital COA Vault & Mass Spec Integrity',
+      coa_vault_banner_text: 'Every chemical batch is cross-indexed with 3rd-party independent analytical verification.',
+      coa_button_text: 'Download Lot COA',
+      reorder_button_text: 'Reorder Compounds',
+      downloadables: {
+        show_downloadables: true,
+        section_title: 'Master Analytical Certification & Batch Archives',
+        section_subtitle: 'Consolidated third-party verification packages and purity analysis suites.',
+        selected_downloadable_ids: ['dl-coa-master-archive', 'dl-spectral-analyzer', 'dl-tesamorelin-dossier'],
+        display_style: 'cards_grid',
+        allow_instant_download: true,
+        show_file_size_and_version: true,
+        show_access_rules: true,
+        custom_badge_text: 'Certified Lot Archive'
+      }
+    },
+    guide: {
+      title: 'Interactive Laboratory User Guide & Operating Standards',
+      subtitle: 'Step-by-step role-based documentation for principal investigators, procurement managers, and laboratory personnel.',
+      helpdesk_banner_title: 'Need Specialized Technical or Synthesis Support?',
+      helpdesk_banner_text: 'Our PhD biochemists and analytical staff are available Monday through Friday for protocol inquiries.',
+      support_hotline: '+1 (800) 555-BKRL',
+      support_email: 'support@bkresearchlabs.com',
+      downloadables: {
+        show_downloadables: true,
+        section_title: 'Downloadable Laboratory SOPs & Manuals',
+        section_subtitle: 'Standard operating procedures, reconstitution safety sheets, and calibration dossiers.',
+        selected_downloadable_ids: ['dl-coa-master-archive', 'dl-tesamorelin-dossier', 'dl-vip-lab-dossier', 'dl-mots-c-guide'],
+        display_style: 'cards_grid',
+        allow_instant_download: true,
+        show_file_size_and_version: true,
+        show_access_rules: true,
+        custom_badge_text: 'Official SOP'
+      }
+    },
+    qr: {
+      title: 'BKRL Mobile Scanner & Lot Authenticator',
+      subtitle: 'Instantly verify bottle authenticity, view lot-specific chromatograms, and check HPLC purity by scanning product QR codes.',
+      camera_heading: 'Live Optical 2D Data Matrix / QR Scanner',
+      camera_instructions: 'Center the QR code located on the physical vial label within the viewfinder frame.',
+      manual_lookup_heading: 'Manual Lot Number Verification',
+      manual_lookup_placeholder: 'Enter Lot ID (e.g., LOT-BK2026-X or TESAM10)...',
+      lookup_button_text: 'Authenticate Lot',
+      demo_sample_lot: 'LOT-BK2026-X',
+      purity_badge_text: 'Verified Purity ≥99.85%',
+      downloadables: {
+        show_downloadables: true,
+        section_title: 'Mobile Apps & High-Resolution Spectral Tools',
+        section_subtitle: 'Download the companion native scanner applications for Apple iOS and Android.',
+        selected_downloadable_ids: ['dl-ios-ipa', 'dl-android-apk', 'dl-spectral-analyzer'],
+        display_style: 'compact_list',
+        allow_instant_download: true,
+        show_file_size_and_version: true,
+        show_access_rules: true,
+        custom_badge_text: 'Companion App'
+      }
+    },
+    ios: {
+      title: 'BK Research Labs iOS Application (.IPA Installer)',
+      subtitle: 'Enterprise-grade iOS client for iPhone and iPad with Apple Wallet pass integration, FaceID security, and offline COA storage.',
+      ipa_download_title: 'BK Research Labs iOS App Package',
+      ipa_download_button: 'Download .IPA Installer Package',
+      ipa_file_size: '31.2 MB',
+      ipa_version: 'v1.0.4 Production (Build 142)',
+      ipa_badge: 'iOS 18+ Ready',
+      step1_title: '1. Download the Signed .IPA File',
+      step1_text: 'Save the official iOS application package directly onto your Apple device or Mac workstation.',
+      step2_title: '2. Install via AltStore, Sideloadly, or MDM',
+      step2_text: 'Open the downloaded .ipa with your preferred sideloading utility or enterprise Mobile Device Management profile.',
+      step3_title: '3. Trust Enterprise Developer Certificate',
+      step3_text: 'Go to Settings → General → VPN & Device Management and select "Trust BK Research Labs Inc." certificate.',
+      qr_code_instruction: 'Scan QR with iPhone Camera to Install Direct Web Clip Profile',
+      downloadables: {
+        show_downloadables: true,
+        section_title: 'iOS Documentation & Mobile Software Kits',
+        section_subtitle: 'Download accompanying provisioning profiles, mobile guides, and desktop sync tools.',
+        selected_downloadable_ids: ['dl-ios-ipa', 'dl-spectral-analyzer', 'dl-coa-master-archive'],
+        display_style: 'compact_list',
+        allow_instant_download: true,
+        show_file_size_and_version: true,
+        show_access_rules: true,
+        custom_badge_text: 'iOS Ecosystem'
+      }
+    },
+    android: {
+      title: 'BK Research Labs Android Application (.APK Direct Package)',
+      subtitle: 'Native Android application (.apk) engineered for Samsung Galaxy, Google Pixel, and lab Android tablets.',
+      apk_download_title: 'Direct Android APK Package (Signed Production Release)',
+      apk_download_button: 'Download APK Package (.apk)',
+      apk_file_size: '24.8 MB',
+      apk_version: 'v2.4.0 Production Build',
+      apk_sha256: 'SHA-256: 8f9b2c1d0e4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c',
+      install_step_title: 'Quick 3-Step Sideload Instructions:',
+      install_step_text: 'Download the APK directly → Allow "Install Unknown Apps" for your browser in Settings → Tap the downloaded file to install.',
+      downloadables: {
+        show_downloadables: true,
+        section_title: 'Android Software & Laboratory Datasets',
+        section_subtitle: 'Explore mobile tools, spectral analysis utilities, and research archives.',
+        selected_downloadable_ids: ['dl-android-apk', 'dl-spectral-analyzer', 'dl-mots-c-guide'],
+        display_style: 'compact_list',
+        allow_instant_download: true,
+        show_file_size_and_version: true,
+        show_access_rules: true,
+        custom_badge_text: 'Android Tools'
+      }
+    },
+    age_gate: {
+      title: 'Authorized Laboratory & Institutional Verification Gate',
+      subtitle: 'All chemical compounds and biological materials supplied by BK Research Labs are restricted to qualified scientific entities.',
+      min_age: 21,
+      accept_button_text: 'I am 21+ and a Qualified Scientific Researcher',
+      decline_button_text: 'Exit Store & Decline',
+      disclaimer_notice: 'Strictly for in vitro laboratory research and academic assay development. Not for human or veterinary administration.'
+    },
+    master_search: {
+      title: 'Global Laboratory Search & Chemical Finder',
+      placeholder: 'Search by Compound Name, SKU, CAS Number, Target Pathway, or Keyword...',
+      quick_filter_label: 'Recommended Scientific Categories',
+      no_results_title: 'No Matching Compounds or Reference Files Found',
+      no_results_subtitle: 'Try searching by CAS number (e.g., 218949-48-5), category keyword, or browse all catalog products.'
+    },
+    product_quick_view: {
+      quality_dossier_title: 'Quality Dossier & Lot Certificate of Analysis (COA)',
+      quality_dossier_subtitle: 'Third-party RP-HPLC purity profiling & mass spectrometry report available for instant laboratory inspection.',
+      lot_sample_badge: 'Lot Verified Standard',
+      download_coa_button_text: 'Download Lot COA',
+      msds_button_text: 'Safety MSDS',
+      volume_tier_title: 'Institutional Volume Tier Pricing',
+      add_to_cart_button_text: 'Add to Laboratory Cart',
+      compliance_disclaimer: 'This chemical compound is manufactured strictly for qualified in-vitro scientific research and academic investigation. Not for human, medicinal, or diagnostic consumption.',
+      downloadables: {
+        show_downloadables: true,
+        section_title: 'Product Reference Files & HPLC Protocols',
+        section_subtitle: 'Relevant downloadable datasets and technical documentation for this compound.',
+        selected_downloadable_ids: ['dl-coa-master-archive', 'dl-tesamorelin-dossier', 'dl-spectral-analyzer'],
+        display_style: 'compact_list',
+        allow_instant_download: true,
+        show_file_size_and_version: true,
+        show_access_rules: true,
+        custom_badge_text: 'Compound Protocol'
+      }
+    }
+  },
+  ota_sync_settings: {
+    auto_update_ios_enabled: true,
+    auto_update_android_enabled: true,
+    auto_update_manual_enabled: true,
+    realtime_broadcast_enabled: true,
+    auto_increment_version: true,
+    client_live_toast_enabled: true,
+    sound_effects_enabled: true,
+    current_system_version: 'v4.4.0',
+    last_ota_broadcast_at: new Date().toISOString(),
+    last_manual_compiled_at: new Date().toISOString(),
+    active_channel_name: 'bkrl_realtime_fleet_channel',
+    device_fleet: [
+      {
+        id: 'dev-ios-16pro',
+        name: 'iOS Mobile App (iPhone 16 Pro Max)',
+        platform: 'ios',
+        device_model: 'Apple iPhone 16 Pro Max (iOS 18.2)',
+        ip_address: '192.168.1.142',
+        status: 'online',
+        app_version: 'v4.4.0',
+        bundle_hash: 'sha256-a9f8b472e104cd92',
+        last_heartbeat: new Date().toISOString(),
+        last_synced_at: new Date().toISOString(),
+        auto_update_enabled: true,
+        battery_level: 94,
+        sync_latency_ms: 12,
+        location: 'Cambridge Research HQ - Laboratory Alpha',
+        active_route: 'Product Quick View & Dossiers'
+      },
+      {
+        id: 'dev-android-px9',
+        name: 'Android Mobile App (Google Pixel 9 Pro)',
+        platform: 'android',
+        device_model: 'Google Pixel 9 Pro (Android 15)',
+        ip_address: '192.168.1.188',
+        status: 'online',
+        app_version: 'v4.4.0',
+        bundle_hash: 'sha256-c3d8e901f44b2a88',
+        last_heartbeat: new Date().toISOString(),
+        last_synced_at: new Date().toISOString(),
+        auto_update_enabled: true,
+        battery_level: 88,
+        sync_latency_ms: 15,
+        location: 'Analytical QC Wing - Station 04',
+        active_route: 'COA Vault & Direct Orders'
+      },
+      {
+        id: 'dev-web-desktop',
+        name: 'Web Desktop Client (Chrome / macOS Sonoma)',
+        platform: 'web',
+        device_model: 'MacBook Pro M3 Max - High-DPI Display',
+        ip_address: '10.0.4.55',
+        status: 'online',
+        app_version: 'v4.4.0',
+        bundle_hash: 'sha256-e77a10df9822ac41',
+        last_heartbeat: new Date().toISOString(),
+        last_synced_at: new Date().toISOString(),
+        auto_update_enabled: true,
+        battery_level: 100,
+        sync_latency_ms: 8,
+        location: 'Executive Operations Deck',
+        active_route: 'Admin Spacing & Theme Control'
+      },
+      {
+        id: 'dev-tablet-ipad',
+        name: 'Lab Handheld Tablet (iPad Pro 13" M4)',
+        platform: 'tablet',
+        device_model: 'Apple iPad Pro 13 (M4) Cleanroom Enclosure',
+        ip_address: '192.168.1.205',
+        status: 'online',
+        app_version: 'v4.4.0',
+        bundle_hash: 'sha256-78b9aa1023cde899',
+        last_heartbeat: new Date().toISOString(),
+        last_synced_at: new Date().toISOString(),
+        auto_update_enabled: true,
+        battery_level: 79,
+        sync_latency_ms: 18,
+        location: 'Cleanroom Sterile Compound Reconstitution',
+        active_route: 'Chemical Spectrometry Lookup'
+      },
+      {
+        id: 'dev-term-scanner',
+        name: 'Warehouse Barcode Terminal (Zebra TC58 Android)',
+        platform: 'terminal',
+        device_model: 'Zebra TC58 Android Industrial Scanner',
+        ip_address: '10.0.12.19',
+        status: 'online',
+        app_version: 'v4.4.0',
+        bundle_hash: 'sha256-bb8311aa8876fe01',
+        last_heartbeat: new Date().toISOString(),
+        last_synced_at: new Date().toISOString(),
+        auto_update_enabled: true,
+        battery_level: 91,
+        sync_latency_ms: 22,
+        location: 'Logistics Center - Fulfillment Dock B',
+        active_route: 'Dispatch & Package Tracking'
+      }
+    ],
+    release_history: [
+      {
+        id: 'rel-440',
+        version: 'v4.4.0',
+        category: 'feature_added',
+        title: 'Real-Time Fleet OTA Synchronizer & Dynamic Manual Compiler',
+        description: 'Instant zero-downtime hot-patching across all connected iOS, Android, and Web clients with automated real-time instruction manual generation.',
+        affected_targets: ['ios', 'android', 'web', 'manual'],
+        timestamp: new Date().toISOString(),
+        author_name: 'BKRL Enterprise System',
+        author_email: 'bkresearchlabs@gmail.com',
+        broadcast_status: 'confirmed',
+        synced_device_count: 5,
+        checksum: 'sha256-f89a22cc33e89b01'
+      },
+      {
+        id: 'rel-439',
+        version: 'v4.3.9',
+        category: 'design_theme',
+        title: 'Full-Screen Interactive Mockup Studio & Visual Box-Model Spacing',
+        description: 'Double-click full-screen enlargement, drag-and-drop section reordering, dynamic badges, and chemical spec editors across all pop-up frames.',
+        affected_targets: ['ios', 'android', 'web'],
+        timestamp: new Date(Date.now() - 3600000).toISOString(),
+        author_name: 'BKRL Operations Admin',
+        author_email: 'bkresearchlabs@gmail.com',
+        broadcast_status: 'confirmed',
+        synced_device_count: 5,
+        checksum: 'sha256-e910bd67a21398bb'
+      }
+    ]
+  },
+  seo_config: {
+    site_title_template: '{title} | BK Research Labs - Analytical Reference Standards',
+    default_meta_title: 'BK Research Labs | High-Purity Analytical Compounds & Reference Materials',
+    default_meta_description: 'Precision chemical synthesis, lyophilized reference peptides, and analytical standard reagents with batch HPLC & mass spectrometry verification.',
+    default_focus_keywords: [
+      'analytical reference standards',
+      'research peptides',
+      'HPLC certified',
+      'chemical synthesis',
+      'in vitro research reagents',
+      'laboratory consumables'
+    ],
+    default_og_image: 'https://bkresearchlabs.com/wp-content/uploads/2026/08/MOTS-C.png',
+    default_og_type: 'website',
+    twitter_site_handle: '@BKResearchLabs',
+    twitter_creator_handle: '@BKResearchLabs',
+    canonical_domain: 'https://bkresearchlabs.com',
+    auto_generate_social_cards: true,
+    enable_json_ld_breadcrumbs: true,
+    enable_json_ld_organization: true,
+    enable_json_ld_product: true,
+    google_site_verification: 'google-site-verification=bkrl_sec_verification_token_2026_gsc',
+    bing_site_verification: 'msvalidate.01=A98B2C4D6E8F0123456789ABCDEF0123',
+    yandex_site_verification: 'yandex-verification=9f8e7d6c5b4a3210',
+    pinterest_site_verification: 'p:domain_verify=8a7b6c5d4e3f2a1b0c9d8e7f',
+    robots_txt_content: `# BK Research Labs - Optimized Robots Directives for Search Engines
+User-agent: *
+Allow: /
+Allow: /shop
+Allow: /categories
+Allow: /page/
+Allow: /product/
+Allow: /category/
+Allow: /guide
+
+# Protect Administrative & Sensitive Checkout Areas
+Disallow: /admin
+Disallow: /api/
+Disallow: /checkout
+Disallow: /customer-portal
+Disallow: /cart
+Disallow: /save-for-later
+
+# Dynamic Crawl Rates & XML Sitemap
+Crawl-delay: 1
+Sitemap: https://bkresearchlabs.com/sitemap.xml
+`,
+    enable_auto_sitemap: true,
+    sitemap_ping_google: true,
+    category_meta_overrides: {
+      'cat-brain': {
+        meta_title: 'Neuro-Active Analytical Compounds & Brain Peptides | BKRL',
+        meta_description: 'Explore certified high-purity neuro-active benchmark compounds and cognitive biochemical research reference standards with verified HPLC purity.',
+        focus_keywords: ['neuro-active compounds', 'brain peptides', 'cognitive research', 'HPLC reference'],
+        og_title: 'Neuro-Active Analytical Compounds & Standards | BKRL',
+        og_description: 'High-purity neuro-active benchmark compounds for central nervous system and cognitive biochemical research.',
+        og_image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&q=80&w=800',
+        og_type: 'product.group',
+        twitter_card: 'summary_large_image',
+        canonical_url: 'https://bkresearchlabs.com/category/brain',
+        robots_index: 'index',
+        robots_follow: 'follow'
+      },
+      'cat-cellular': {
+        meta_title: 'Cellular Longevity & Telomeric Reference Compounds | BKRL',
+        meta_description: 'Mitochondrial, telomeric, and cell-longevity reference standards for cellular signaling pathways and bioenergetics research.',
+        focus_keywords: ['cellular longevity', 'mitochondrial research', 'epitalon', 'SS-31'],
+        og_title: 'Cellular Longevity & Signaling Compounds | BKRL',
+        og_description: 'Certified reference standards for mitochondrial electron transport chain and telomeric assays.',
+        og_image: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&q=80&w=800',
+        og_type: 'product.group',
+        twitter_card: 'summary_large_image',
+        canonical_url: 'https://bkresearchlabs.com/category/cellular',
+        robots_index: 'index',
+        robots_follow: 'follow'
+      },
+      'cat-growth-hormone': {
+        meta_title: 'Growth Hormone Secretagogue & Somatotropic Standards | BKRL',
+        meta_description: 'Secretagogue derivatives, GHRH analogs, and somatotropic axis reference standards with certified >99% analytical purity.',
+        focus_keywords: ['growth hormone secretagogues', 'GHRH analogs', 'tesamorelin', 'ipamorelin'],
+        og_title: 'Growth Hormone Secretagogues & Axis Standards | BKRL',
+        og_description: 'High-purity somatotropic axis research standards with lot-specific COA verification.',
+        og_image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80&w=800',
+        og_type: 'product.group',
+        twitter_card: 'summary_large_image',
+        canonical_url: 'https://bkresearchlabs.com/category/growth-hormone',
+        robots_index: 'index',
+        robots_follow: 'follow'
+      },
+      'cat-skin-tissue': {
+        meta_title: 'Tissue Repair & Collagen Remodeling Standards (BPC-157, GHK-Cu) | BKRL',
+        meta_description: 'Extracellular matrix remodeling, copper-binding complexes (GHK-Cu), and tissue repair research compounds (BPC-157) with >99% purity.',
+        focus_keywords: ['BPC-157', 'GHK-Cu', 'tissue repair', 'collagen synthesis'],
+        og_title: 'Tissue Remodeling & Repair Compounds | BKRL',
+        og_description: 'Certified reference standards for extracellular matrix and soft-tissue remodeling assays.',
+        og_image: 'https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=800',
+        og_type: 'product.group',
+        twitter_card: 'summary_large_image',
+        canonical_url: 'https://bkresearchlabs.com/category/skin-tissue',
+        robots_index: 'index',
+        robots_follow: 'follow'
+      }
+    },
+    product_meta_overrides: {
+      'prod-tesam10mg': {
+        meta_title: 'TESAMORELIN 10mg Lyophilized Powder (>99% HPLC Certified) | BKRL',
+        meta_description: 'Order high-purity Tesamorelin 10mg analytical reference standard. Synthetic GHRH analog with lot-specific HPLC chromatograms and mass spec analysis.',
+        focus_keywords: ['tesamorelin 10mg', 'GHRH analog', 'visceral fat research', 'HPLC peptide standard'],
+        og_title: 'Tesamorelin 10mg Analytical Reference Standard',
+        og_description: 'Synthetic growth hormone-releasing factor analog for somatotrophic and metabolic research.',
+        og_image: 'https://bkresearchlabs.com/wp-content/uploads/2026/08/MOTS-C.png',
+        og_type: 'product',
+        twitter_card: 'summary_large_image',
+        canonical_url: 'https://bkresearchlabs.com/product/tesamorelin-10mg-lyophilized-powder',
+        robots_index: 'index',
+        robots_follow: 'follow'
+      },
+      'prod-bpc15710mg': {
+        meta_title: 'BPC-157 10mg Lyophilized Powder (HPLC Lot Verified) | BKRL',
+        meta_description: 'Buy certified BPC-157 10mg research peptide standard. High-purity synthetic protein fragment for tendon, ligament, and tissue repair assays.',
+        focus_keywords: ['BPC-157 10mg', 'body protection compound', 'tissue repair peptide', 'HPLC certified BPC'],
+        og_title: 'BPC-157 10mg Research Grade Lyophilized Powder',
+        og_description: 'Synthetic peptide fragment of gastric proteins studied for angiogenesis and extracellular matrix modulation.',
+        og_image: 'https://bkresearchlabs.com/wp-content/uploads/2026/08/BPC-157.png',
+        og_type: 'product',
+        twitter_card: 'summary_large_image',
+        canonical_url: 'https://bkresearchlabs.com/product/bpc-157-10mg-lyophilized-powder',
+        robots_index: 'index',
+        robots_follow: 'follow'
+      },
+      'prod-ghkcu100mg': {
+        meta_title: 'GHK-Cu 100mg Copper Peptide Complex (>99% Purity) | BKRL',
+        meta_description: 'Buy GHK-Cu (Glycyl-L-Histidyl-L-Lysine Copper) 100mg research standard. Studied for collagen modulation, tissue remodeling, and antioxidant kinetics.',
+        focus_keywords: ['GHK-Cu 100mg', 'copper peptide', 'collagen synthesis', 'antioxidant research'],
+        og_title: 'GHK-Cu 100mg Copper Complex Reference Standard',
+        og_description: 'High-purity copper-binding peptide complex for skin biology and cellular matrix research.',
+        og_image: 'https://bkresearchlabs.com/wp-content/uploads/2026/08/GHK-Cu.png',
+        og_type: 'product',
+        twitter_card: 'summary_large_image',
+        canonical_url: 'https://bkresearchlabs.com/product/ghk-cu-100mg-lyophilized-powder',
+        robots_index: 'index',
+        robots_follow: 'follow'
+      }
+    },
+    page_meta_overrides: {
+      'page-about': {
+        meta_title: 'About BK Research Labs | Precision Chemical Standards & Mission',
+        meta_description: 'Learn about BK Research Labs institutional mission, third-party HPLC & MS analytical testing protocols, and certified cold-chain logistics.',
+        focus_keywords: ['about BKRL', 'analytical chemistry laboratory', 'HPLC testing standards', 'certified reference materials'],
+        og_title: 'About BK Research Labs - Institutional Research Supply',
+        og_description: 'Precision analytical reference standards, cold-chain fulfillment, and lot-verified quality dossiers.',
+        og_type: 'article',
+        twitter_card: 'summary_large_image',
+        canonical_url: 'https://bkresearchlabs.com/page/about-us',
+        robots_index: 'index',
+        robots_follow: 'follow'
+      },
+      'page-quality': {
+        meta_title: 'Quality Assurance & HPLC Verification Protocols | BKRL',
+        meta_description: 'Explore our analytical verification methodology: RP-HPLC purity profiling, Mass Spectrometry (LC-MS), lot-specific COA generation, and quality standards.',
+        focus_keywords: ['HPLC verification', 'mass spectrometry COA', 'analytical purity testing', 'chemical quality assurance'],
+        og_title: 'Quality Assurance & Analytical Protocols | BKRL',
+        og_description: 'Lot-by-lot analytical verification and certified reference standard documentation.',
+        og_type: 'article',
+        twitter_card: 'summary_large_image',
+        canonical_url: 'https://bkresearchlabs.com/page/quality-assurance',
+        robots_index: 'index',
+        robots_follow: 'follow'
+      }
+    },
+    product_title_template: '{name} ({sku}) | >99% HPLC Certified Research Standard - BKRL',
+    product_description_template: 'Order certified {name} online from BK Research Labs. Batch lot tested with verified HPLC purity (>99%) and COA for laboratory research.',
+    category_title_template: '{name} - Analytical Reference Standards & Compounds | BK Research Labs',
+    category_description_template: 'Explore high-purity {name} analytical standards and reagents from BK Research Labs. Lot verified with complete analytical dossiers.',
+    custom_head_tags: `<!-- BKRL Canonical Search & Social Tags -->\n<meta name="publisher" content="BK Research Labs Inc.">\n<meta name="format-detection" content="telephone=no">`,
+    last_audit_score: 96,
+    last_audited_at: new Date().toISOString(),
+    sitemap_settings: {
+      include_homepage: true,
+      include_products: true,
+      include_categories: true,
+      include_pages: true,
+      include_core_routes: true,
+      include_images: true,
+      auto_exclude_noindex: true,
+      format_mode: 'formatted',
+      default_priority_homepage: '1.0',
+      default_priority_products: '0.8',
+      default_priority_categories: '0.9',
+      default_priority_pages: '0.7',
+      default_priority_core: '0.5',
+      default_freq_homepage: 'daily',
+      default_freq_products: 'weekly',
+      default_freq_categories: 'weekly',
+      default_freq_pages: 'monthly',
+      default_freq_core: 'monthly',
+      custom_urls: [
+        {
+          id: 'custom-url-1',
+          url: '/research-standards-overview',
+          priority: '0.7',
+          changefreq: 'monthly',
+          enabled: true,
+          notes: 'Analytical reference protocols overview'
+        }
+      ],
+      excluded_url_patterns: ['/admin*', '/checkout*', '/customer-portal*', '/api/*'],
+      last_crawled_at: new Date().toISOString(),
+      submission_history: [
+        {
+          id: 'sub-1',
+          engine: 'google',
+          status_code: 200,
+          status_text: 'OK - Accepted by Google Search Console',
+          urls_submitted: 38,
+          timestamp: new Date(Date.now() - 7200000).toISOString(),
+          response_msg: 'Sitemap notification received and queued for processing.'
+        },
+        {
+          id: 'sub-2',
+          engine: 'bing',
+          status_code: 200,
+          status_text: 'OK - Accepted by Bing Webmaster API',
+          urls_submitted: 38,
+          timestamp: new Date(Date.now() - 7200000).toISOString(),
+          response_msg: 'Sitemap index added to Bing search crawler queue.'
+        }
+      ]
+    }
+  },
+  ai_master_control: DEFAULT_AI_MASTER_CONTROL
+};
+
+export const INITIAL_SEO_CONFIG: SeoGlobalConfig = INITIAL_SITE_SETTINGS.seo_config!;
+
+export const INITIAL_HOMEPAGE_CONTENT: HomepageContent = {
+  hero_title: 'Precision Research Compounds & Certified Standards',
+  hero_subtitle: 'Delivering verified analytical purity, high-resolution LC-MS documentation, and laboratory consumables for academic and institutional research.',
+  hero_primary_cta_label: 'Shop Products',
+  hero_primary_cta_link: '/shop',
+  hero_secondary_cta_label: 'Explore Categories',
+  hero_secondary_cta_link: '/categories',
+  hero_image_url: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&q=80&w=1200',
+  announcement_bar_enabled: true,
+  announcement_bar_text: '⚡ Free Express Shipping on orders above $150. Every order includes Lot-Specific Certificates of Analysis.',
+  featured_category_ids: ['cat-brain', 'cat-cellular', 'cat-metabolic', 'cat-skin-tissue'],
+  featured_product_ids: ['prod-bpc157-10mg', 'prod-glp3rt-10mg', 'prod-nad-500mg', 'prod-cjc-ipam-10mg'],
+};
+
+export const INITIAL_DISCOUNTS: DiscountCode[] = [
+  {
+    id: 'disc-welcome10',
+    code: 'WELCOME10',
+    type: 'percentage',
+    value: 10,
+    min_purchase: 50,
+    active: true,
+    usage_count: 34,
+    max_uses: 500,
+  },
+  {
+    id: 'disc-lab25',
+    code: 'LAB25',
+    type: 'fixed',
+    value: 25,
+    min_purchase: 200,
+    active: true,
+    usage_count: 12,
+    max_uses: 100,
+  }
+];
+
+export const INITIAL_SAMPLE_ORDERS: Order[] = [
+  {
+    id: 'ord-89201',
+    user_id: 'usr-customer-1',
+    customer_name: 'Dr. Sarah Jenkins',
+    customer_email: 'sjenkins@biomedlabs.org',
+    order_number: 'BKRL-2026-89201',
+    status: 'shipped',
+    payment_status: 'paid',
+    fulfillment_status: 'shipped',
+    subtotal: 122.50,
+    shipping_amount: 0,
+    tax_amount: 7.96,
+    discount_amount: 10.00,
+    total: 120.46,
+    currency: 'USD',
+    shipping_address: {
+      id: 'addr-1',
+      user_id: 'usr-customer-1',
+      type: 'shipping',
+      first_name: 'Sarah',
+      last_name: 'Jenkins',
+      address_line_1: '750 Main Street, Suite 302',
+      city: 'Cambridge',
+      state: 'MA',
+      postal_code: '02139',
+      country: 'United States',
+      is_default: true,
+    },
+    billing_address: {
+      id: 'addr-1',
+      user_id: 'usr-customer-1',
+      type: 'billing',
+      first_name: 'Sarah',
+      last_name: 'Jenkins',
+      address_line_1: '750 Main Street, Suite 302',
+      city: 'Cambridge',
+      state: 'MA',
+      postal_code: '02139',
+      country: 'United States',
+      is_default: true,
+    },
+    payment_method: 'Credit Card (Stripe Tokenized)',
+    payment_reference: 'ch_3M4kxL2eZvKYlo2C1g3442',
+    tracking_number: '1Z9999999999999999',
+    carrier: 'UPS Cold-Chain Express',
+    items: [
+      {
+        id: 'item-1',
+        order_id: 'ord-89201',
+        product_id: 'prod-bpc157',
+        product_name_snapshot: 'BPC-157 Analytical Reference Compound (5mg)',
+        sku_snapshot: 'BK-PEP-157',
+        unit_price: 48.50,
+        quantity: 2,
+        subtotal: 97.00,
+        image_snapshot: 'https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=800',
+      },
+      {
+        id: 'item-2',
+        order_id: 'ord-89201',
+        product_id: 'prod-dmem-media',
+        product_name_snapshot: 'High-Glucose Modified Cell Culture Buffer (500mL)',
+        sku_snapshot: 'BK-CEL-100',
+        unit_price: 32.00,
+        quantity: 1,
+        subtotal: 32.00,
+        image_snapshot: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80&w=800',
+      }
+    ],
+    acknowledgments_accepted: true,
+    age_verified_at_checkout: true,
+    created_at: new Date(Date.now() - 86400000 * 3).toISOString(),
+    updated_at: new Date(Date.now() - 86400000 * 2).toISOString(),
+  }
+];
+
+export const INITIAL_PAYMENT_GATEWAYS: PaymentGateway[] = [
+  {
+    id: 'authorize_net',
+    name: 'Authorize.Net Merchant Gateway',
+    provider: 'authorize_net',
+    description: 'Direct credit card processing via Authorize.Net API with 256-bit TLS tokenization.',
+    icon_name: 'CreditCard',
+    enabled: true,
+    is_default: true,
+    display_order: 1,
+    test_mode: true,
+    badge_text: 'Authorizing Merchant',
+    authorize_net: {
+      api_login_id: '5Kp9u~Sim3',
+      transaction_key: '4v87aW2X~9Lk3mP1',
+      public_client_key: '8N7x~43aW2X9Lk3mP1',
+      mode: 'sandbox',
+      transaction_type: 'auth_capture',
+      test_mode: true,
+      supported_cards: ['visa', 'mastercard', 'amex', 'discover']
+    },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'bank_wire',
+    name: 'Online Banking / Wire & ACH Transfer',
+    provider: 'bank_wire',
+    description: 'Direct institutional B2B wire transfer, ACH electronic deposit, or Purchase Order billing.',
+    icon_name: 'Building2',
+    enabled: true,
+    is_default: false,
+    display_order: 2,
+    test_mode: false,
+    badge_text: 'Zero Processing Fees',
+    bank_wire: {
+      bank_name: 'JPMorgan Chase Bank, N.A.',
+      account_name: 'BK Research Labs Operations LLC',
+      account_number: '9820-1120-4921',
+      routing_number: '021000021',
+      swift_bic: 'CHASUS33XXX',
+      bank_address: '270 Park Avenue, New York, NY 10017',
+      payment_instructions: 'Please include your Order Number (#BKRL-XXXX) or PO Number in the Wire Memo / Reference line. Settlement clears within 24 hours.',
+      require_po_reference: true
+    },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'stripe',
+    name: 'Stripe Payment Gateway',
+    provider: 'stripe',
+    description: 'Process international credit cards and digital wallets with Stripe PaymentIntents API.',
+    icon_name: 'CreditCard',
+    enabled: true,
+    is_default: false,
+    display_order: 3,
+    test_mode: true,
+    badge_text: 'Global Gateway',
+    stripe: {
+      publishable_key: 'pk_test_51Mz920x8921001928374109',
+      secret_key: 'sk_test_51Mz920x892199218274109',
+      webhook_secret: 'whsec_92019201920128',
+      mode: 'test',
+      supported_cards: ['visa', 'mastercard', 'amex', 'discover', 'jcb', 'diners']
+    },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'paypal',
+    name: 'PayPal & Pay Later',
+    provider: 'paypal',
+    description: 'Instant checkout using PayPal account balance, linked bank account, or Pay in 4.',
+    icon_name: 'Wallet',
+    enabled: true,
+    is_default: false,
+    display_order: 4,
+    test_mode: true,
+    badge_text: 'Express Checkout',
+    paypal: {
+      client_id: 'AX1290_paypal_sandbox_client_id_bkrl',
+      client_secret: 'E1902_paypal_sandbox_client_secret_bkrl',
+      mode: 'sandbox'
+    },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'crypto',
+    name: 'Cryptocurrency (BTC / ETH / USDT)',
+    provider: 'crypto',
+    description: 'Decentralized crypto payments in Bitcoin, Ethereum, or TRC-20 Tether.',
+    icon_name: 'Coins',
+    enabled: true,
+    is_default: false,
+    display_order: 5,
+    test_mode: false,
+    badge_text: 'Private & Instant',
+    crypto: {
+      btc_wallet_address: 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh',
+      eth_wallet_address: '0x71C7656EC7ab88b098defB751B7401B5f6d8976F',
+      usdt_trc20_address: 'T9yD14Nj9j7x2k1mP0lK3mN9j7x2k1mP0',
+      auto_calculate_usd: true
+    },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'apple_pay',
+    name: 'Apple Pay & Google Pay Express',
+    provider: 'apple_pay',
+    description: 'One-touch biometric payment buttons for mobile and Safari/Chrome browsers.',
+    icon_name: 'Smartphone',
+    enabled: true,
+    is_default: false,
+    display_order: 6,
+    test_mode: false,
+    badge_text: '1-Touch Express',
+    apple_pay: {
+      merchant_id: 'merchant.com.bkresearchlabs.store',
+      domain_validation_status: 'verified',
+      enable_express_button: true
+    },
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  }
+];
+
+export const INITIAL_DOWNLOADABLES: DownloadableItem[] = [
+  {
+    id: 'dl-android-apk',
+    title: 'BK Research Labs Mobile App Installer (Android APK)',
+    filename: 'BK-Research-Labs-v1.0.4.apk',
+    file_size: '28.4 MB',
+    version: '1.0.4',
+    category: 'app',
+    platform: 'android',
+    description: 'Official Android App Package (.apk) with full store functionality, instant push order tracking, offline CoA vault access, mobile barcode scanner, and direct laboratory support chat.',
+    download_url: '/downloads/BK-Research-Labs-v1.0.4.apk',
+    is_public: true,
+    requires_auth: false,
+    download_count: 1420,
+    access_rule: 'public',
+    email_delivery_enabled: true,
+    email_sent_count: 312,
+    release_notes: 'v1.0.4 Build: Added instant mobile push alerts for order dispatch, full offline CoA spectroscopy document caching, biometrics sign-in, and direct cold-chain express tracking.',
+    md5_hash: 'a1b2c3d4e5f67890123456789abcdef0',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'dl-spectroscopy-suite',
+    title: 'BK Analytical Spectroscopy & LC-MS Data Parser',
+    filename: 'BK-Spectroscopy-Suite-v2.1.0-Win-Mac.zip',
+    file_size: '114.2 MB',
+    version: '2.1.0',
+    category: 'software',
+    platform: 'all',
+    description: 'Desktop lab software utility to analyze raw HPLC chromatography baseline integration logs and mass spectrometry mass-to-charge (m/z) data files.',
+    download_url: '/downloads/BK-Spectroscopy-Suite-v2.1.0-Win-Mac.zip',
+    is_public: false,
+    requires_auth: true,
+    download_count: 582,
+    access_rule: 'registered_only',
+    email_delivery_enabled: true,
+    email_sent_count: 185,
+    release_notes: 'Supports Agilent, Waters, and Shimadzu raw XML / CSV mass spectra exports.',
+    md5_hash: 'f8e7d6c5b4a39281701234567890abcd',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'dl-coa-master-archive',
+    title: 'Master Certificates of Analysis (CoA) Archive 2026 Q3',
+    filename: 'BKRL-Master-CoA-Archive-2026-Q3.pdf',
+    file_size: '18.6 MB',
+    version: '2026.3',
+    category: 'coa',
+    platform: 'all',
+    description: 'Consolidated PDF bundle containing lot-specific 99.8%+ purity reports, NMR spectra, and sterility lab certifications for all 2026 catalog compounds.',
+    download_url: '/downloads/BKRL-Master-CoA-Archive-2026-Q3.pdf',
+    is_public: true,
+    requires_auth: false,
+    download_count: 2190,
+    access_rule: 'public',
+    email_delivery_enabled: true,
+    email_sent_count: 420,
+    release_notes: 'Updated with August 2026 independent third-party lab verification certificates.',
+    md5_hash: '3a4b5c6d7e8f901234567890abcdef12',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'dl-tesamorelin-dossier',
+    title: 'Tesamorelin 10mg Chromatogram & Reconstitution Protocol PDF',
+    filename: 'Tesamorelin-Lot-2026-A-Chromatogram-Protocol.pdf',
+    file_size: '8.4 MB',
+    version: '1.2.0',
+    category: 'documentation',
+    platform: 'all',
+    description: 'Exclusive technical reference guide containing baseline HPLC integration, peptide molecular mass calibration curves, and sterile buffer reconstitution matrix for Tesamorelin.',
+    download_url: '/downloads/Tesamorelin-Lot-2026-A-Chromatogram-Protocol.pdf',
+    is_public: false,
+    requires_auth: true,
+    download_count: 410,
+    access_rule: 'product_purchase_required',
+    linked_product_ids: ['prod-tesamorelin-10mg', 'prod-cjc-ipam-10mg'],
+    email_delivery_enabled: true,
+    email_sent_count: 290,
+    release_notes: 'Auto-granted to registered researchers purchasing TESAMORELIN 10mg or CJC-1295/IPAMORELIN Blend.',
+    md5_hash: 'e5f6a7b8c9d01234567890abcdef1234',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'dl-mots-c-guide',
+    title: 'MOTS-c Bio-Metabolic Cellular Protocol & Mass Spectra Dataset',
+    filename: 'MOTS-c-BioMetabolic-Dataset-2026.zip',
+    file_size: '42.1 MB',
+    version: '2026.1',
+    category: 'dataset',
+    platform: 'all',
+    description: 'Raw LC-MS/MS spectral data, mitochondrial respiration rates, and solvent stability index for MOTS-c 10mg lyophilized standard.',
+    download_url: '/downloads/MOTS-c-BioMetabolic-Dataset-2026.zip',
+    is_public: false,
+    requires_auth: true,
+    download_count: 195,
+    access_rule: 'product_purchase_required',
+    linked_product_ids: ['prod-motsc-10mg', 'prod-nad-500mg'],
+    email_delivery_enabled: true,
+    email_sent_count: 140,
+    release_notes: 'Includes Waters UNIFI raw mass spec files.',
+    md5_hash: 'd0e1f2a3b4c567890123456789abcdef',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'dl-vip-lab-dossier',
+    title: 'Executive Priority Synthesis & Laboratory Calibration Dossier',
+    filename: 'Executive-Priority-Synthesis-Dossier-2026.pdf',
+    file_size: '14.8 MB',
+    version: '3.0.0',
+    category: 'documentation',
+    platform: 'all',
+    description: 'High-security internal laboratory manual provided to designated institutional partners and granted scientific investigators.',
+    download_url: '/downloads/Executive-Priority-Synthesis-Dossier-2026.pdf',
+    is_public: false,
+    requires_auth: true,
+    download_count: 88,
+    access_rule: 'admin_granted_only',
+    assigned_user_emails: ['bkresearchlabs@gmail.com'],
+    email_delivery_enabled: true,
+    email_sent_count: 45,
+    release_notes: 'Access restricted to admin-assigned registered account handles.',
+    md5_hash: '7a8b9c0d1e2f34567890123456789abc',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'dl-ios-ipa',
+    title: 'BK Research Labs iOS App Package (IPA / TestFlight)',
+    filename: 'BK-Research-Labs-v1.0.4.ipa',
+    file_size: '31.2 MB',
+    version: '1.0.4',
+    category: 'app',
+    platform: 'ios',
+    description: 'Official iOS App Package (.ipa) & TestFlight Provisioning Profile for iPhone & iPad. Features native FaceID / TouchID biometric login, Apple Wallet pass order tracking, offline CoA vault, and push notifications.',
+    download_url: '/downloads/BK-Research-Labs-v1.0.4.ipa',
+    is_public: true,
+    requires_auth: false,
+    download_count: 1180,
+    access_rule: 'public',
+    email_delivery_enabled: true,
+    email_sent_count: 210,
+    release_notes: 'v1.0.4 iOS Build: Optimized for iOS 18 / iPadOS 18, added Apple Wallet order tracking passes, and FaceID security vault.',
+    md5_hash: 'c8d9e0f1a2b34567890123456789abcd',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'dl-sales-executive-summary',
+    title: 'BK Research Labs Enterprise Platform - Sales Executive Summary',
+    filename: 'BKR-Enterprise-Platform-Sales-Executive-Summary.pdf',
+    file_size: '420.5 KB',
+    version: '2.5.0',
+    category: 'documentation',
+    platform: 'all',
+    description: 'Concise executive sales document outlining platform features, target customers, real-time customizability, multi-role access control, and commercial biotechnology capabilities.',
+    download_url: '/downloads/BKR-Enterprise-Platform-Sales-Executive-Summary.pdf',
+    is_public: true,
+    requires_auth: false,
+    download_count: 320,
+    access_rule: 'public',
+    email_delivery_enabled: true,
+    email_sent_count: 85,
+    release_notes: 'Official executive overview for commercial buyers, biotech suppliers, and institutional investors.',
+    md5_hash: '7a8b9c0d1e2f34567890abcdef123456',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'dl-platform-master-spec-sheet',
+    title: 'BK Research Labs Platform - Master Feature & Technical Specification Sheet',
+    filename: 'BKR-Platform-Master-Feature-Spec-Sheet.pdf',
+    file_size: '890.4 KB',
+    version: '2.5.0',
+    category: 'documentation',
+    platform: 'all',
+    description: 'Exhaustive categorized technical specification matrix detailing every frontend, backend, security, and office module across the entire platform.',
+    download_url: '/downloads/BKR-Platform-Master-Feature-Spec-Sheet.pdf',
+    is_public: true,
+    requires_auth: false,
+    download_count: 245,
+    access_rule: 'public',
+    email_delivery_enabled: true,
+    email_sent_count: 62,
+    release_notes: 'Complete architecture specification across 8 major functional modules and 120+ features.',
+    md5_hash: '8b9c0d1e2f3a45678901bcdef2345678',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  },
+  {
+    id: 'dl-commercial-sales-flyer',
+    title: 'BK Research Labs Enterprise Commerce - High-Impact Sales Flyer',
+    filename: 'BKR-Platform-Commercial-Sales-Flyer.html',
+    file_size: '38.2 KB',
+    version: '2.5.0',
+    category: 'documentation',
+    platform: 'all',
+    description: 'Visually rich commercial sales flyer with metric badges, feature breakdown cards, and architecture highlights.',
+    download_url: '/downloads/BKR-Platform-Commercial-Sales-Flyer.html',
+    is_public: true,
+    requires_auth: false,
+    download_count: 410,
+    access_rule: 'public',
+    email_delivery_enabled: true,
+    email_sent_count: 110,
+    release_notes: 'Print-ready HTML/PDF commercial marketing flyer with complete responsive styling.',
+    md5_hash: '9c0d1e2f3a4b56789012cdef34567890',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString()
+  }
+];
+
+export const INITIAL_USER_ASSET_GRANTS: UserAssetGrant[] = [
+  {
+    id: 'grant-001',
+    user_id: 'usr-admin-01',
+    user_email: 'bkresearchlabs@gmail.com',
+    user_name: 'BK Research Labs Admin',
+    asset_id: 'dl-tesamorelin-dossier',
+    asset_title: 'Tesamorelin 10mg Chromatogram & Reconstitution Protocol PDF',
+    filename: 'Tesamorelin-Lot-2026-A-Chromatogram-Protocol.pdf',
+    granted_by: 'product_purchase',
+    granted_by_detail: 'Order #BKRL-2026-1002 (TESAMORELIN 10mg)',
+    granted_at: new Date(Date.now() - 86400000 * 3).toISOString(),
+    download_count: 4,
+    last_downloaded_at: new Date(Date.now() - 3600000 * 5).toISOString()
+  },
+  {
+    id: 'grant-002',
+    user_id: 'usr-admin-01',
+    user_email: 'bkresearchlabs@gmail.com',
+    user_name: 'BK Research Labs Admin',
+    asset_id: 'dl-vip-lab-dossier',
+    asset_title: 'Executive Priority Synthesis & Laboratory Calibration Dossier',
+    filename: 'Executive-Priority-Synthesis-Dossier-2026.pdf',
+    granted_by: 'admin',
+    granted_by_detail: 'Manual Admin Assignment by System Owner',
+    granted_at: new Date(Date.now() - 86400000 * 10).toISOString(),
+    download_count: 2,
+    last_downloaded_at: new Date(Date.now() - 3600000 * 12).toISOString()
+  }
+];
+
+export const INITIAL_ASSET_EMAIL_LOGS: AssetEmailLog[] = [
+  {
+    id: 'alog-101',
+    asset_id: 'dl-tesamorelin-dossier',
+    asset_title: 'Tesamorelin 10mg Chromatogram & Reconstitution Protocol PDF',
+    filename: 'Tesamorelin-Lot-2026-A-Chromatogram-Protocol.pdf',
+    recipient_email: 'bkresearchlabs@gmail.com',
+    recipient_name: 'BK Research Customer',
+    sent_by_user_id: 'usr-admin-01',
+    sent_by_email: 'bkresearchlabs@gmail.com',
+    trigger_source: 'automatic_purchase',
+    status: 'sent',
+    details: 'Dispatched via Gmail SMTP Profile on Order #BKRL-2026-1002 completion',
+    sent_at: new Date(Date.now() - 86400000 * 3).toISOString()
+  }
+];
+
+export const INITIAL_COMMUNICATION_STATE: CommunicationSystemState = {
+  active_profile_id: 'prof-primary-gmail',
+  profiles: [
+    {
+      id: 'prof-primary-gmail',
+      name: 'Primary Company Email (Gmail / Workspace)',
+      is_default: true,
+      company_email: 'bkresearchlabs@gmail.com',
+      sender_name: 'BK Research Labs Official',
+      reply_to_email: 'support@bkresearchlabs.com',
+      provider_type: 'gmail',
+      smtp_host: 'smtp.gmail.com',
+      smtp_port: 587,
+      smtp_user: 'bkresearchlabs@gmail.com',
+      smtp_pass: '••••••••••••••••',
+      smtp_security: 'tls',
+      status: 'connected',
+      last_tested_at: new Date().toISOString(),
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'prof-support-resend',
+      name: 'Customer Support Desk (Resend API)',
+      is_default: false,
+      company_email: 'support@bkresearchlabs.com',
+      sender_name: 'BK Research Customer Care',
+      reply_to_email: 'support@bkresearchlabs.com',
+      provider_type: 'resend',
+      api_key: 're_123456789_bk_support_live_key',
+      status: 'connected',
+      last_tested_at: new Date().toISOString(),
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'prof-tech-smtp',
+      name: 'Technical & Chemical Analysis (Custom SMTP)',
+      is_default: false,
+      company_email: 'tech@bkresearchlabs.com',
+      sender_name: 'BKRL Analytical Support',
+      reply_to_email: 'tech@bkresearchlabs.com',
+      provider_type: 'smtp',
+      smtp_host: 'mail.bkresearchlabs.com',
+      smtp_port: 587,
+      smtp_user: 'tech@bkresearchlabs.com',
+      smtp_pass: '••••••••••••••••',
+      smtp_security: 'tls',
+      status: 'connected',
+      last_tested_at: new Date().toISOString(),
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    }
+  ],
+  provider_config: {
+    provider_type: 'gmail',
+    company_external_email: 'bkresearchlabs@gmail.com',
+    sender_name: 'BK Research Labs Official',
+    reply_to_email: 'support@bkresearchlabs.com',
+    smtp_host: 'smtp.gmail.com',
+    smtp_port: 587,
+    smtp_user: 'bkresearchlabs@gmail.com',
+    smtp_pass: '••••••••••••••••',
+    smtp_security: 'tls',
+    api_key: 're_123456789_bk_research_live_key',
+    status: 'connected',
+    last_tested_at: new Date().toISOString()
+  },
+  auto_responder_enabled: true,
+  auto_responder_subject: 'Re: [BK Research Labs] Inquiry Received (Ticket #{{ticket_number}})',
+  auto_responder_body: 'Thank you for reaching out to BK Research Labs. We have received your message and assigned ticket #{{ticket_number}} to our support team. An analytical specialist will reply within 1-2 business hours.',
+  forward_inbound_to_owner: true,
+  notification_rules: [
+    {
+      id: 'rule-order-confirm',
+      template_type: 'order_confirmation',
+      title: 'Order Purchase Confirmation ("Thanks for your order")',
+      description: 'Dispatches immediate purchase receipt, order breakdown, and CoA download links to customer upon successful checkout.',
+      enabled: true,
+      trigger_event: 'On New Order Placed',
+      recipient_target: 'customer',
+      subject: 'Thank you for your purchase #{{order_number}} - BK Research Labs',
+      body_html: `<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; color: #0f172a;">
+  <div style="background-color: #031b19; padding: 24px; text-align: center;">
+    <h1 style="color: #ffffff; margin: 0; font-size: 20px; font-weight: 800; tracking: 0.05em;">BK RESEARCH LABS</h1>
+    <p style="color: #06b6d4; margin: 4px 0 0 0; font-size: 12px; font-weight: 600;">High-Purity Analytical Compounds & Reference Standards</p>
+  </div>
+  <div style="padding: 24px;">
+    <h2 style="font-size: 18px; margin-top: 0; color: #0f172a;">Thanks for your order, {{customer_name}}!</h2>
+    <p style="font-size: 14px; line-height: 1.6; color: #334155;">
+      Your purchase <strong>#{{order_number}}</strong> has been successfully placed and is currently being processed by our packaging team.
+    </p>
+    <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin: 20px 0;">
+      <h3 style="margin-top: 0; font-size: 14px; color: #0f172a; border-b: 1px solid #cbd5e1; padding-bottom: 8px;">Order Summary</h3>
+      <p style="font-size: 13px; margin: 6px 0;"><strong>Order Number:</strong> #{{order_number}}</p>
+      <p style="font-size: 13px; margin: 6px 0;"><strong>Total Amount:</strong> {{order_total}}</p>
+      <p style="font-size: 13px; margin: 6px 0;"><strong>Shipping Method:</strong> Fast Priority 1-3 Day</p>
+    </div>
+    <div style="margin: 20px 0;">
+      <a href="{{coa_link}}" style="display: inline-block; background-color: #0d9488; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 13px;">Download Certificates of Analysis (CoA)</a>
+    </div>
+    <p style="font-size: 12px; color: #64748b; margin-top: 24px; border-t: 1px solid #f1f5f9; padding-top: 16px;">
+      If you have questions regarding your order or analytical documentation, reply directly to this email or contact <a href="mailto:{{company_email}}" style="color: #0d9488;">{{company_email}}</a>.
+    </p>
+  </div>
+</div>`,
+      body_text: `Dear {{customer_name}},\n\nThank you for your purchase #{{order_number}} with BK Research Labs!\n\nOrder Total: {{order_total}}\nShipping: Fast Priority 1-3 Day Delivery\n\nYou can access your order status and Certificates of Analysis (CoA) anytime in your customer portal.\n\nQuestions? Reply to this email or contact {{company_email}}.`,
+      available_variables: ['{{customer_name}}', '{{order_number}}', '{{order_total}}', '{{items_list}}', '{{coa_link}}', '{{company_email}}'],
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'rule-shipping-details',
+      template_type: 'shipping_details',
+      title: 'Shipping Details & Tracking Notification',
+      description: 'Sends real-time priority carrier tracking information and package delivery status to the customer.',
+      enabled: true,
+      trigger_event: 'On Order Fulfilled / Tracking Number Assigned',
+      recipient_target: 'customer',
+      subject: 'Shipping Update: Your order #{{order_number}} has shipped via {{carrier}}!',
+      body_html: `<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; color: #0f172a;">
+  <div style="background-color: #031b19; padding: 24px; text-align: center;">
+    <h1 style="color: #ffffff; margin: 0; font-size: 20px; font-weight: 800;">BK RESEARCH LABS DISPATCH</h1>
+  </div>
+  <div style="padding: 24px;">
+    <h2 style="font-size: 18px; margin-top: 0;">Your Order Is On Its Way!</h2>
+    <p style="font-size: 14px; line-height: 1.6; color: #334155;">
+      Great news, {{customer_name}}! Order <strong>#{{order_number}}</strong> has been dispatched via <strong>{{carrier}}</strong> with insulated temperature-controlled packaging.
+    </p>
+    <div style="background-color: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 8px; padding: 16px; margin: 20px 0;">
+      <p style="margin: 0; font-size: 13px; color: #065f46;"><strong>Carrier:</strong> {{carrier}}</p>
+      <p style="margin: 6px 0 0 0; font-size: 15px; color: #047857; font-weight: 800;"><strong>Tracking #:</strong> {{tracking_number}}</p>
+      <p style="margin: 6px 0 0 0; font-size: 12px; color: #065f46;"><strong>Estimated Delivery:</strong> 1-3 Business Days</p>
+    </div>
+    <p style="font-size: 12px; color: #64748b;">
+      For questions or delivery assistance, reply to this email or email us at {{company_email}}.
+    </p>
+  </div>
+</div>`,
+      body_text: `Hello {{customer_name}},\n\nYour BK Research Labs order #{{order_number}} has shipped via {{carrier}}.\n\nTracking Number: {{tracking_number}}\nEstimated Delivery: 1-3 Business Days\n\nContact support at {{company_email}} if you need assistance.`,
+      available_variables: ['{{customer_name}}', '{{order_number}}', '{{carrier}}', '{{tracking_number}}', '{{delivery_estimate}}', '{{company_email}}'],
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'rule-tech-support',
+      template_type: 'tech_support',
+      title: 'Technical Support & Chemical Analysis Response',
+      description: 'Sends technical responses, purity inquiries, or custom research synthesis updates to customers.',
+      enabled: true,
+      trigger_event: 'On Tech Support Ticket Replied',
+      recipient_target: 'customer',
+      subject: '[BK Research Tech Support] Response for Ticket #{{ticket_number}} - {{subject}}',
+      body_html: `<div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px;">
+  <h2 style="color: #031b19; font-size: 18px; margin-top: 0;">Technical Research Support Response</h2>
+  <p style="font-size: 13px; color: #475569;">Ticket <strong>#{{ticket_number}}</strong> • Subject: {{subject}}</p>
+  <div style="background-color: #f8fafc; border-left: 4px solid #0d9488; padding: 16px; margin: 16px 0; font-size: 14px; line-height: 1.6;">
+    {{reply_body}}
+  </div>
+  <p style="font-size: 12px; color: #64748b;">BK Research Labs Technical Support Team • {{company_email}}</p>
+</div>`,
+      body_text: `Dear Customer,\n\nOur technical team has responded to ticket #{{ticket_number}} ({{subject}}):\n\n{{reply_body}}\n\nBK Research Labs Technical Support`,
+      available_variables: ['{{ticket_number}}', '{{customer_name}}', '{{subject}}', '{{reply_body}}', '{{assigned_staff}}', '{{company_email}}'],
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'rule-customer-service',
+      template_type: 'customer_service',
+      title: 'Customer Care & General Inquiries Response',
+      description: 'Handles outgoing answers for general order questions, account assistance, or billing inquiries.',
+      enabled: true,
+      trigger_event: 'On Customer Service Ticket Replied',
+      recipient_target: 'customer',
+      subject: '[BK Customer Care] Re: Ticket #{{ticket_number}}',
+      body_html: `<div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px;">
+  <h2 style="color: #031b19; font-size: 18px; margin-top: 0;">Customer Care Response</h2>
+  <p style="font-size: 13px; color: #475569;">Hello {{customer_name}}, here is an update regarding ticket <strong>#{{ticket_number}}</strong>:</p>
+  <div style="background-color: #f1f5f9; padding: 16px; border-radius: 8px; font-size: 14px; line-height: 1.6; margin: 16px 0;">
+    {{reply_body}}
+  </div>
+  <p style="font-size: 12px; color: #64748b;">Best regards,\nBK Research Customer Care Team</p>
+</div>`,
+      body_text: `Hello {{customer_name}},\n\nUpdate regarding ticket #{{ticket_number}}:\n\n{{reply_body}}\n\nBest regards,\nBK Research Customer Care Team`,
+      available_variables: ['{{ticket_number}}', '{{customer_name}}', '{{reply_body}}', '{{company_email}}'],
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'rule-low-stock',
+      template_type: 'low_stock_alert',
+      title: 'Low Stock & Inventory Reorder Warning (Admin/Owner)',
+      description: 'Automatic alert dispatched to the owner and inventory manager when compound stock drops below safety reorder threshold.',
+      enabled: true,
+      trigger_event: 'On Compound Stock < Minimum Threshold',
+      recipient_target: 'owner',
+      custom_recipient_email: 'bkresearchlabs@gmail.com',
+      subject: '⚠️ Stock Alert: {{product_name}} stock is low ({{current_stock}} remaining)',
+      body_html: `<div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background: #fff1f2; border: 1px solid #fecdd3; border-radius: 12px; padding: 24px; color: #9f1239;">
+  <h2 style="margin-top: 0; font-size: 18px;">⚠️ Low Stock Inventory Alert</h2>
+  <p style="font-size: 14px;"><strong>Compound:</strong> {{product_name}} (SKU: {{sku}})</p>
+  <p style="font-size: 14px;"><strong>Current Inventory:</strong> {{current_stock}} units (Minimum Threshold: {{reorder_point}})</p>
+  <p style="font-size: 13px; margin-top: 16px;">Please log into the Executive Owner Portal to generate a new Supplier Purchase Order.</p>
+</div>`,
+      body_text: `⚠️ LOW STOCK ALERT\n\nCompound: {{product_name}} (SKU: {{sku}})\nCurrent Stock: {{current_stock}} units\nReorder Point: {{reorder_point}}\n\nPlease review in Inventory & POs.`,
+      available_variables: ['{{product_name}}', '{{sku}}', '{{current_stock}}', '{{reorder_point}}'],
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'rule-daily-digest',
+      template_type: 'executive_daily_digest',
+      title: 'Executive Daily Performance Digest (Owner)',
+      description: 'Comprehensive daily automated summary detailing revenue totals, fulfilled orders, and open customer tickets.',
+      enabled: true,
+      trigger_event: 'Daily at 6:00 PM EST',
+      recipient_target: 'owner',
+      custom_recipient_email: 'bkresearchlabs@gmail.com',
+      subject: '📊 Daily Store Digest: {{date}} - BK Research Labs',
+      body_html: `<div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px;">
+  <h2 style="color: #0f172a; margin-top: 0;">📊 Executive Daily Performance Summary</h2>
+  <p style="color: #64748b; font-size: 13px;">Date: {{date}}</p>
+  <div style="display: flex; gap: 12px; margin: 20px 0;">
+    <div style="flex: 1; background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 8px;">
+      <div style="font-size: 11px; color: #64748b;">Total Daily Revenue</div>
+      <div style="font-size: 20px; font-weight: 800; color: #059669;">{{daily_sales}}</div>
+    </div>
+    <div style="flex: 1; background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 8px;">
+      <div style="font-size: 11px; color: #64748b;">Orders Processed</div>
+      <div style="font-size: 20px; font-weight: 800; color: #0284c7;">{{orders_count}}</div>
+    </div>
+  </div>
+  <p style="font-size: 13px;"><strong>Top Selling Compound:</strong> {{top_product}}</p>
+  <p style="font-size: 13px;"><strong>Pending Orders Queue:</strong> {{pending_orders_count}} items</p>
+</div>`,
+      body_text: `📊 Daily Store Digest - {{date}}\n\nDaily Revenue: {{daily_sales}}\nOrders Processed: {{orders_count}}\nTop Product: {{top_product}}\nPending Orders: {{pending_orders_count}}`,
+      available_variables: ['{{date}}', '{{daily_sales}}', '{{orders_count}}', '{{top_product}}', '{{pending_orders_count}}'],
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    }
+  ],
+  inbound_messages: [
+    {
+      id: 'msg-101',
+      ticket_number: 'TICK-8842',
+      sender_email: 'dr.s.lin@biotech-research.edu',
+      sender_name: 'Dr. Sarah Lin (Stanford Bio-Lab)',
+      recipient_email: 'support@bkresearchlabs.com',
+      subject: 'Inquiry: BPC-157 Lot #2026-B8 HPLC Calibration & Mass Spec CoA',
+      category: 'tech_support',
+      body: 'Hello BK Research Labs team, we recently purchased 10 vials of BPC-157 10mg (Order #ORD-2026-1002). Could you please provide the high-resolution raw Mass Spec (.raw / .xml) data files alongside the standard PDF Certificate of Analysis for our spectral database?',
+      status: 'unread',
+      priority: 'high',
+      assigned_role: 'admin',
+      received_at: new Date(Date.now() - 1000 * 60 * 45).toISOString(), // 45 mins ago
+      updated_at: new Date(Date.now() - 1000 * 60 * 45).toISOString(),
+      replies: []
+    },
+    {
+      id: 'msg-102',
+      ticket_number: 'TICK-8841',
+      sender_email: 'marcus.v@apexpharmacy.com',
+      sender_name: 'Marcus Vance',
+      recipient_email: 'support@bkresearchlabs.com',
+      subject: 'Custom Bulk Order Quote Request - Semaglutide & Tirzepatide Compound Powder',
+      category: 'customer_service',
+      body: 'Good day. Our research facility is looking to secure a recurring bulk supply contract (100+ units monthly) for analytical standards. What tiered pricing is available and can we set up automated purchase orders?',
+      status: 'in_progress',
+      priority: 'urgent',
+      assigned_role: 'owner',
+      received_at: new Date(Date.now() - 1000 * 60 * 180).toISOString(), // 3 hrs ago
+      updated_at: new Date(Date.now() - 1000 * 60 * 90).toISOString(),
+      replies: [
+        {
+          id: 'rep-1',
+          sender_email: 'bkresearchlabs@gmail.com',
+          sender_name: 'Executive Owner Portal',
+          body: 'Hello Marcus, thank you for contacting BK Research Labs. We offer 22% volume discounts for monthly PO commitments above 100 units with guaranteed lot consistency. I have forwarded our bulk analytical catalog to your email.',
+          sent_at: new Date(Date.now() - 1000 * 60 * 90).toISOString()
+        }
+      ]
+    },
+    {
+      id: 'msg-103',
+      ticket_number: 'TICK-8840',
+      sender_email: 'j.rodriguez@medtechlabs.org',
+      sender_name: 'Julio Rodriguez',
+      recipient_email: 'support@bkresearchlabs.com',
+      subject: 'Order Tracking & Fast Priority Delivery Confirmation (#ORD-2026-1001)',
+      category: 'order_inquiry',
+      body: 'Hi there, I saw my order #ORD-2026-1001 was dispatched via FedEx Express Priority. Could you confirm if dry ice insulated packaging was utilized?',
+      status: 'replied',
+      priority: 'normal',
+      assigned_role: 'employee',
+      received_at: new Date(Date.now() - 1000 * 60 * 360).toISOString(),
+      updated_at: new Date(Date.now() - 1000 * 60 * 200).toISOString(),
+      replies: [
+        {
+          id: 'rep-2',
+          sender_email: 'support@bkresearchlabs.com',
+          sender_name: 'Fulfillment Specialist',
+          body: 'Hi Julio, yes! All temperature-sensitive compounds in order #ORD-2026-1001 are packed in insulated thermal sleeves with frozen gel packs to ensure absolute stability during 1-3 day priority transit.',
+          sent_at: new Date(Date.now() - 1000 * 60 * 200).toISOString()
+        }
+      ]
+    }
+  ],
+  email_logs: [
+    {
+      id: 'log-501',
+      direction: 'outgoing',
+      from_email: 'bkresearchlabs@gmail.com',
+      to_email: 'dr.s.lin@biotech-research.edu',
+      subject: 'Thank you for your purchase #ORD-2026-1002 - BK Research Labs',
+      template_type: 'order_confirmation',
+      status: 'delivered',
+      details: 'Handshake via Gmail SMTP (smtp.gmail.com:587) • TLS Secured • Message ID <bk-msg-9921@bkresearchlabs.com>',
+      timestamp: new Date(Date.now() - 1000 * 60 * 60).toISOString()
+    },
+    {
+      id: 'log-502',
+      direction: 'outgoing',
+      from_email: 'bkresearchlabs@gmail.com',
+      to_email: 'j.rodriguez@medtechlabs.org',
+      subject: 'Shipping Update: Your order #ORD-2026-1001 has shipped via FedEx Express!',
+      template_type: 'shipping_details',
+      status: 'delivered',
+      details: 'Tracking # 982104928101 • Delivered to Priority Dispatch Queue',
+      timestamp: new Date(Date.now() - 1000 * 60 * 210).toISOString()
+    },
+    {
+      id: 'log-503',
+      direction: 'incoming',
+      from_email: 'dr.s.lin@biotech-research.edu',
+      to_email: 'support@bkresearchlabs.com',
+      subject: 'Inquiry: BPC-157 Lot #2026-B8 HPLC Calibration & Mass Spec CoA',
+      status: 'received',
+      details: 'Routed to Inbound Tech Support Queue (Ticket #TICK-8842)',
+      timestamp: new Date(Date.now() - 1000 * 60 * 45).toISOString()
+    }
+  ],
+  // --- SMS NOTIFICATION & GATEWAY SYSTEM EXTENSION ---
+  active_sms_profile_id: 'sms-prof-twilio',
+  sms_notifications_enabled: true,
+  sms_profiles: [
+    {
+      id: 'sms-prof-twilio',
+      name: 'Primary Twilio Toll-Free Route',
+      is_default: true,
+      provider_type: 'twilio',
+      account_sid: 'AC8920194810294810294810294810',
+      auth_token: '••••••••••••••••••••••••',
+      from_phone_number: '+1 (800) 555-0199',
+      messaging_service_sid: 'MG88102948102948',
+      status: 'connected',
+      last_tested_at: new Date().toISOString(),
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'sms-prof-telnyx',
+      name: 'Backup Telnyx Direct Route',
+      is_default: false,
+      provider_type: 'telnyx',
+      api_key: 'KEY018294019284019284',
+      from_phone_number: '+1 (888) 777-0144',
+      status: 'connected',
+      last_tested_at: new Date(Date.now() - 86400000).toISOString(),
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'sms-prof-webhook',
+      name: 'Custom HTTP Gateway Webhook',
+      is_default: false,
+      provider_type: 'custom_webhook',
+      from_phone_number: 'BKRESEARCH',
+      webhook_url: 'https://api.bkresearchlabs.com/sms/dispatch',
+      status: 'connected',
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    }
+  ],
+  sms_notification_rules: [
+    {
+      id: 'sms-rule-order-confirm',
+      template_type: 'order_confirmation_sms',
+      title: 'Instant Order Confirmation SMS',
+      description: 'Sends an immediate SMS receipt to customer upon successful order placement',
+      enabled: true,
+      trigger_event: 'order_placed',
+      recipient_target: 'customer',
+      message_body: 'BK Research Labs: Order #{order_number} confirmed! Total: {order_total}. View details: {order_link}',
+      available_variables: ['customer_name', 'order_number', 'order_total', 'order_link', 'items_count'],
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'sms-rule-shipping',
+      template_type: 'shipping_dispatch_sms',
+      title: 'Express Shipping Dispatch Alert',
+      description: 'Sends SMS with carrier tracking details when an order is marked as shipped',
+      enabled: true,
+      trigger_event: 'order_shipped',
+      recipient_target: 'customer',
+      message_body: 'BK Research Labs: Your order #{order_number} has shipped via {carrier}! Tracking #{tracking_number}. Track live: {tracking_link}',
+      available_variables: ['customer_name', 'order_number', 'carrier', 'tracking_number', 'tracking_link'],
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'sms-rule-delivered',
+      template_type: 'order_delivered_sms',
+      title: 'Package Delivery Notification',
+      description: 'Sends SMS confirmation when order is marked delivered by carrier',
+      enabled: true,
+      trigger_event: 'order_delivered',
+      recipient_target: 'customer',
+      message_body: 'BK Research Labs: Order #{order_number} has been delivered! COAs and analytical reports are available in your portal.',
+      available_variables: ['customer_name', 'order_number', 'delivery_time'],
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'sms-rule-asset',
+      template_type: 'asset_unlocked_sms',
+      title: 'Digital Asset / COA Unlock Alert',
+      description: 'Sends SMS link when a digital report, COA, or dataset is granted to user',
+      enabled: true,
+      trigger_event: 'asset_granted',
+      recipient_target: 'customer',
+      message_body: 'BK Research Labs: Digital file "{asset_title}" is now unlocked in your vault! Download copy: {download_url}',
+      available_variables: ['customer_name', 'asset_title', 'filename', 'download_url'],
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'sms-rule-2fa',
+      template_type: 'security_code_sms',
+      title: 'Security & Verification Code SMS',
+      description: 'Sends two-factor or login verification PIN codes',
+      enabled: true,
+      trigger_event: 'security_auth',
+      recipient_target: 'customer',
+      message_body: 'BK Research Labs security code: {code}. Do not share this PIN. Expires in 10 minutes.',
+      available_variables: ['customer_name', 'code', 'expiry_minutes'],
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    },
+    {
+      id: 'sms-rule-low-stock',
+      template_type: 'low_stock_sms',
+      title: 'Admin Inventory Low Stock Alert SMS',
+      description: 'Notifies store manager/admin via SMS when inventory falls below threshold',
+      enabled: true,
+      trigger_event: 'inventory_low',
+      recipient_target: 'admin',
+      message_body: '[BKRL ALERT] Low Inventory: {product_name} ({sku}) is down to {current_stock} units. Restock PO recommended.',
+      available_variables: ['product_name', 'sku', 'current_stock', 'threshold'],
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    }
+  ],
+  sms_logs: [
+    {
+      id: 'sms-log-1',
+      direction: 'outgoing',
+      from_phone: '+1 (800) 555-0199',
+      to_phone: '+1 (617) 555-0192',
+      message_body: 'BK Research Labs: Order #ORD-2026-1002 confirmed! Total: $429.50. View details: https://bkresearchlabs.com/order/ORD-2026-1002',
+      template_type: 'order_confirmation_sms',
+      provider_used: 'Twilio Toll-Free (AC89201948...)',
+      segment_count: 1,
+      status: 'delivered',
+      details: 'SID: SM9921048102 • Delivered in 1.2s',
+      timestamp: new Date(Date.now() - 1000 * 60 * 65).toISOString()
+    },
+    {
+      id: 'sms-log-2',
+      direction: 'outgoing',
+      from_phone: '+1 (800) 555-0199',
+      to_phone: '+1 (617) 555-0192',
+      message_body: 'BK Research Labs: Your order #ORD-2026-1001 has shipped via FedEx Priority! Tracking #982104928101.',
+      template_type: 'shipping_dispatch_sms',
+      provider_used: 'Twilio Toll-Free (AC89201948...)',
+      segment_count: 1,
+      status: 'delivered',
+      details: 'SID: SM9921048103 • Delivered in 0.9s',
+      timestamp: new Date(Date.now() - 1000 * 60 * 200).toISOString()
+    }
+  ]
+};
+
+export const INITIAL_CUSTOM_PAGES: CustomPage[] = [
+  {
+    id: 'page-about',
+    title: 'About BK Research Labs',
+    slug: 'about-us',
+    category: 'general',
+    summary: 'Our scientific mission, analytical purity benchmarks, and institutional supply standards.',
+    content: `## Institutional Science & High-Purity Synthesis
+
+BK Research Labs is a specialized supplier of certified reference compounds and laboratory consumables engineered exclusively for in vitro academic and biomedical research.
+
+### Analytical Rigor & HPLC Standards
+Every compound batch undergoes third-party high-performance liquid chromatography (HPLC) and mass spectrometry (LC-MS) testing to verify purity levels exceeding **99.0%**. Analytical Certificates of Analysis (COAs) are generated on a lot-specific basis and made directly accessible in our COA Vault.
+
+### Cold-Chain Logistics
+Temperature-sensitive reagents are packaged in insulated thermal barrier shippers with solid CO2 dry ice or cold gel packs to maintain biochemical integrity during transit.
+
+### In Vitro Research Compliance
+All materials supplied by BK Research Labs are strictly intended for *in vitro* laboratory research and scientific calibration. Materials are not for human, clinical, therapeutic, or diagnostic administration.`,
+    show_in_header: true,
+    show_in_footer: true,
+    header_nav_mode: 'default',
+    status: 'published',
+    meta_title: 'About Us | BK Research Labs Analytical Standards',
+    meta_description: 'Discover BK Research Labs certified laboratory reference compounds, HPLC testing standards, and institutional research supply.',
+    author: 'BKRL Scientific Board',
+    views_count: 1420,
+    sort_order: 1,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'page-quality',
+    title: 'Quality & HPLC Verification',
+    slug: 'quality-assurance',
+    category: 'scientific',
+    summary: 'Lot-by-lot analytical verification, mass spectrometry testing, and analytical standards.',
+    content: `## Quality Assurance & Verification Protocols
+
+At BK Research Labs, analytical integrity is our foundation. We maintain strict compliance with standardized analytical testing procedures across every compound synthesis run.
+
+### Comprehensive Testing Workflow
+1. **Purity Determination (HPLC):** High-Performance Liquid Chromatography separates and quantifies chemical components, establishing purity against reference standards.
+2. **Identity Confirmation (LC-MS / MALDI-TOF):** Mass spectrometry verifies exact molecular mass and confirms peptide or small molecule chemical identity without degradation artifacts.
+3. **Sterility & Endotoxin Screening:** Finished lyophilized vials undergo strict bioburden screening before final lot release.
+4. **Lot Tracking QR Codes:** Scan the 2D QR code on any vial to instantly view its verified Certificate of Analysis.`,
+    show_in_header: true,
+    show_in_footer: true,
+    header_nav_mode: 'default',
+    status: 'published',
+    meta_title: 'Quality Assurance & HPLC Verification | BK Research Labs',
+    meta_description: 'Explore our multi-stage testing methodology including HPLC purity testing, LC-MS mass verification, and lot QR traceability.',
+    author: 'BKRL Quality Control Dept.',
+    views_count: 980,
+    sort_order: 2,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'page-reconstitution-guide',
+    title: 'Reconstitution & Storage Protocols',
+    slug: 'reconstitution-storage-protocol',
+    category: 'protocol',
+    summary: 'Standard laboratory handling, sterile dilution steps, and cold storage parameters.',
+    content: `## Laboratory Reconstitution & Handling Protocols
+
+### Lyophilized Powder Storage
+- **Unopened Vials:** Store desiccated at **-20°C** for long-term stability (up to 24 months), or **2°C to 8°C** for short-term handling.
+- Protect from direct ultraviolet exposure and moisture.
+
+### Reconstitution Procedure
+1. Allow the lyophilized vial to reach room temperature (20°C - 25°C) before reconstitution to prevent atmospheric condensation.
+2. Clean the rubber septum with a sterile 70% isopropyl alcohol wipe.
+3. Using a sterile laboratory syringe, gently introduce bacteriostatic water or sterile analytical buffer down the internal glass wall.
+4. **Do not vortex or vigorously shake.** Gently swirl the vial in circular motions until the lyophilized pellet is completely dissolved into a clear solution.
+
+### Reconstituted Solution Storage
+- Store reconstituted solutions at **2°C to 8°C** and utilize within recommended laboratory experimental timelines (typically 21-28 days).
+- For extended storage, aliquot into single-use cryovials and freeze at **-80°C** to prevent freeze-thaw degradation cycles.`,
+    show_in_header: false,
+    show_in_footer: true,
+    header_nav_mode: 'default',
+    status: 'published',
+    meta_title: 'Reconstitution & Storage Protocols | BK Research Labs',
+    meta_description: 'Standard laboratory protocol for dissolving lyophilized research compounds and maintaining long-term temperature stability.',
+    author: 'Dr. Marcus Vance, Chief Biochemist',
+    views_count: 2150,
+    sort_order: 3,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: 'page-compliance-terms',
+    title: 'Terms of Research Supply',
+    slug: 'terms-of-supply',
+    category: 'legal',
+    summary: 'Institutional supply agreements, in vitro research constraints, and compliance mandates.',
+    content: `## Terms of Laboratory Supply & Compliance Disclaimer
+
+### Research Use Only (RUO) Notice
+All products, chemical compounds, and analytical reference standards supplied by BK Research Labs are engineered and distributed strictly for **in vitro laboratory research, academic study, and assay development**.
+
+### Prohibited Uses
+- **Not for Human or Veterinary Administration:** Under no circumstances are products intended for clinical, therapeutic, household, agricultural, or diagnostic use in humans or animals.
+- **Buyer Qualifications:** The purchaser represents and warrants that laboratory facilities have adequate safety protocols, personal protective equipment (PPE), and qualified personnel to handle experimental chemical compounds.
+
+### Age & Geographic Verification
+Purchases are strictly restricted to authorized entities and individuals aged 21 or older who have verified scientific research intent.`,
+    show_in_header: false,
+    show_in_footer: true,
+    header_nav_mode: 'default',
+    status: 'published',
+    meta_title: 'Terms of Research Supply & Legal Disclaimers',
+    meta_description: 'Review our institutional supply agreement, terms of service, and laboratory in vitro research mandates.',
+    author: 'BKRL Compliance & Legal Office',
+    views_count: 730,
+    sort_order: 4,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  }
+];
+
+

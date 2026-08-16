@@ -1,0 +1,279 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --app-scale: 1;
+    --app-scale-percent: 100%;
+    --fluid-gap: clamp(0.5rem, 1.2vw, 1.5rem);
+    --fluid-padding: clamp(0.75rem, 2vw, 2.5rem);
+  }
+
+  body {
+    background-color: #050807;
+    color: #e2e8f0;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Global Auto-Scale & Anti-Overlap Safeguards */
+.auto-scale-active {
+  /* Prevent horizontal cut-offs during window dragging */
+  overflow-x: hidden;
+}
+
+.auto-scale-viewport-wrapper {
+  transform-origin: top center;
+  transition: transform 0.1s ease-out;
+}
+
+/* Anti-overlap rules for responsive scaled interfaces */
+.auto-scale-content-root * {
+  /* Prevent child elements from bursting out of grid/flex containers */
+  box-sizing: border-box;
+}
+
+/* Ensure controls, buttons and pills preserve their internal padding and never overlap labels */
+button, a.button-link, input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Prevent text overflow collision in scaled flex containers */
+.flex-nowrap-safe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fluid-gap, 0.5rem);
+}
+
+@keyframes logoHeartbeat {
+  0% { transform: scale(1); }
+  12% { transform: scale(1.18); }
+  24% { transform: scale(1); }
+  36% { transform: scale(1.12); }
+  60% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+.animate-bkr-heartbeat {
+  animation: logoHeartbeat 1.6s ease-in-out infinite;
+  transform-origin: 50px 52px;
+}
+
+/* ==========================================================================
+   PRINT MEDIA QUERIES & HIGH-QUALITY PHYSICAL EXPORT STYLES
+   Strips out website navigation, floating controls, and optimizes layout
+   for razor-sharp physical printing of business cards, COAs, and documents.
+   ========================================================================== */
+
+/* Screen default for print-only elements */
+.print-only {
+  display: none !important;
+}
+
+@media print {
+  /* Reset document root for physical paper printing */
+  html, body {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 11pt !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Force exact color reproduction for metallic foils, backgrounds & logos */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Strip out all website chrome, navigation, headers, sidebars, floating widgets, and edit toolbars */
+  header,
+  nav,
+  aside,
+  footer,
+  .no-print,
+  .print-hidden,
+  [data-no-print="true"],
+  .auto-scale-widget-container,
+  .toast-container,
+  .floating-widget,
+  .modal-backdrop-nav,
+  button:not(.allow-print-btn),
+  input[type="file"],
+  .editor-toolbar,
+  .document-sidebar,
+  .admin-nav-bar,
+  .device-frame-shell {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Show elements specifically designed for print */
+  .print-only {
+    display: block !important;
+    visibility: visible !important;
+  }
+  .print-only-flex {
+    display: flex !important;
+    visibility: visible !important;
+  }
+  .print-only-grid {
+    display: grid !important;
+    visibility: visible !important;
+  }
+
+  /* Target Print Container - expands to fill the printed page */
+  .print-friendly-root,
+  .print-export-container,
+  .printable-document-page,
+  .printable-card-sheet {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    transform: none !important;
+  }
+
+  /* Page Break Controls */
+  .print-page-break {
+    page-break-after: always !important;
+    break-after: page !important;
+    height: 0 !important;
+  }
+
+  .print-page-break-before {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  .print-avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* High-resolution rendering for QR codes and laboratory graphics */
+  .print-qr-code,
+  .print-logo-emblem,
+  .print-high-res {
+    image-rendering: -webkit-optimize-contrast !important;
+    image-rendering: crisp-edges !important;
+  }
+
+  /* Business Card Print Sheet specific grid rules */
+  .print-sheet-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 3.5in) !important;
+    gap: 0.125in !important;
+    justify-content: center !important;
+    align-content: start !important;
+    margin: 0.25in auto !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .print-card-item {
+    width: 3.5in !important;
+    height: 2.0in !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Physical Crop & Trim Marks */
+  .crop-mark {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-color: #94a3b8 !important;
+    pointer-events: none;
+  }
+}
+
+/* Screen Print-Preview Simulator Styles */
+.print-preview-canvas {
+  background-color: #0b1120;
+  background-image: 
+    radial-gradient(#1e293b 1px, transparent 1px),
+    radial-gradient(#0f172a 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+}
+
+.print-paper-sheet {
+  background-color: #ffffff;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  color: #0f172a;
+}
+
+/* ==========================================================================
+   GOOGLE TRANSLATE ANTI-BRANDING & ZERO-CLS FIXES
+   Eliminates top banner iframe, suppresses tooltips, and locks body offset
+   ========================================================================== */
+
+/* Fix body positioning so Google Translate never pushes the viewport down by 40px */
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
+/* Completely suppress all Google Translate banner frames, iframe popups & highlights */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame,
+.goog-te-gadget-icon,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-text-highlight {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  height: 0 !important;
+  width: 0 !important;
+  border: 0 !important;
+  pointer-events: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Hide default Google Translate element container */
+#google_translate_element {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  font-size: 0px !important;
+  color: transparent !important;
+}
+
+.goog-te-gadget .goog-te-combo {
+  display: none !important;
+}
+
+/* Scientific & Brand Exclusion Class Protection */
+.notranslate,
+[translate="no"] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+
+
+

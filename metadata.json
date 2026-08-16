@@ -1,0 +1,6 @@
+{
+  "name": "BKR Labs",
+  "description": "Production-ready analytical research compounds e-commerce application with BKR Labs shield branding, Google Translate integration, Master API Key Vault, customizable security export tools, and on-device local translation sandbox.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
